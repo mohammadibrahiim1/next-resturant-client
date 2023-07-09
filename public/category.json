@@ -1,0 +1,103 @@
+{
+  "data": [
+    {
+     
+      "name": "Appetizers",
+      "slug": "appetizers",
+      "description": "",
+      "status": 5,
+      "thumb": "https://demo.foodking.dev/storage/21/conversions/appetizers-thumb.png",
+      "cover": "https://demo.foodking.dev/storage/21/conversions/appetizers-cover.png"
+    },
+    {
+      "id": 2,
+      "name": "Flame Grill Burgers",
+      "slug": "flame-grill-burgers",
+      "description": "",
+      "status": 5,
+      "thumb": "https://demo.foodking.dev/storage/22/conversions/flame_grill_burgers-thumb.png",
+      "cover": "https://demo.foodking.dev/storage/22/conversions/flame_grill_burgers-cover.png"
+    },
+    {
+      "id": 3,
+      "name": "Veggie & Plant Based Burgers",
+      "slug": "veggie-plant-based-burgers",
+      "description": "",
+      "status": 5,
+      "thumb": "https://demo.foodking.dev/storage/23/conversions/veggie_&_plant_based_burgers-thumb.png",
+      "cover": "https://demo.foodking.dev/storage/23/conversions/veggie_&_plant_based_burgers-cover.png"
+    },
+    {
+      "id": 4,
+      "name": "Sandwich from the Grill",
+      "slug": "sandwich-from-the-grill",
+      "description": "",
+      "status": 5,
+      "thumb": "https://demo.foodking.dev/storage/24/conversions/sandwich_from_the_grill-thumb.png",
+      "cover": "https://demo.foodking.dev/storage/24/conversions/sandwich_from_the_grill-cover.png"
+    },
+    {
+      "id": 5,
+      "name": "Hot Chicken Entrees",
+      "slug": "hot-chicken-entrees",
+      "description": "",
+      "status": 5,
+      "thumb": "https://demo.foodking.dev/storage/25/conversions/hot_chicken_entrees-thumb.png",
+      "cover": "https://demo.foodking.dev/storage/25/conversions/hot_chicken_entrees-cover.png"
+    },
+    {
+      "id": 6,
+      "name": "Beef Entrees",
+      "slug": "beef-entrees",
+      "description": "",
+      "status": 5,
+      "thumb": "https://demo.foodking.dev/storage/26/conversions/beef_entrees-thumb.png",
+      "cover": "https://demo.foodking.dev/storage/26/conversions/beef_entrees-cover.png"
+    },
+    {
+      "id": 7,
+      "name": "Seafood Entrees",
+      "slug": "seafood-entrees",
+      "description": "",
+      "status": 5,
+      "thumb": "https://demo.foodking.dev/storage/27/conversions/seafood_entrees-thumb.png",
+      "cover": "https://demo.foodking.dev/storage/27/conversions/seafood_entrees-cover.png"
+    },
+    {
+      "id": 8,
+      "name": "House Special Salads",
+      "slug": "house-special-salads",
+      "description": "",
+      "status": 5,
+      "thumb": "https://demo.foodking.dev/storage/28/conversions/house_special_salads-thumb.png",
+      "cover": "https://demo.foodking.dev/storage/28/conversions/house_special_salads-cover.png"
+    },
+    {
+      
+      "name": "Zoop Soups",
+      "slug": "zoop-soups",
+      "description": "",
+      "status": 5,
+      "thumb": "https://demo.foodking.dev/storage/29/conversions/zoop_soups-thumb.png",
+      "cover": "https://demo.foodking.dev/storage/29/conversions/zoop_soups-cover.png"
+    },
+    {
+      "id": 10,
+      "name": "Side Orders",
+      "slug": "side-orders",
+      "description": "",
+      "status": 5,
+      "thumb": "https://demo.foodking.dev/storage/30/conversions/side_orders-thumb.png",
+      "cover": "https://demo.foodking.dev/storage/30/conversions/side_orders-cover.png"
+    },
+    {
+      "id": 11,
+      "name": "Beverages",
+      "slug": "beverages",
+      "description": "",
+      "status": 5,
+      "thumb": "https://demo.foodking.dev/storage/31/conversions/beverages-thumb.png",
+      "cover": "https://demo.foodking.dev/storage/31/conversions/beverages-cover.png"
+    }
+  ]
+}
