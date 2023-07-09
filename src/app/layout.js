@@ -4,8 +4,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import Footer from "@/Components/Footer/Footer";
 import { MantineProvider } from "@mantine/core";
-// import { Html } from "next/document";
-// import Footer from "@/Conponents/Footer/Footer";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +25,6 @@ export default function RootLayout({ children }) {
     >
       <html lang="en">
         <body className={inter.className}>
-       
           <Header></Header>
           {children} <Footer></Footer>
         </body>

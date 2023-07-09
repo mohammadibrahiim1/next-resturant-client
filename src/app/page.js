@@ -1,7 +1,11 @@
+import HeaderCarousel from "@/Components/Carousel/HeaderCarousel";
+
 export default function Home() {
   return (
     <main>
-      <h1>this is home page </h1>
+      <div>
+        <HeaderCarousel></HeaderCarousel>
+      </div>
     </main>
   );
 }
