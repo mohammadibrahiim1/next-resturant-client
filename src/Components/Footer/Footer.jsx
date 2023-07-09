@@ -98,7 +98,6 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 700,
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     marginBottom: `calc(${theme.spacing.xs} / 2)`,
- 
   },
 
   afterFooter: {
@@ -163,13 +162,7 @@ const Footer = () => {
 
   const groups = data.map((group) => {
     const links = group.links.map((link, index) => (
-      <Text
-        key={index}
-        className={classes.link}
-        component="a"
-        href={link.link}
-       
-      >
+      <Text key={index} className={classes.link} component="a" href={link.link}>
         {link.label}
       </Text>
     ));
