@@ -26,9 +26,7 @@ const useStyles = createStyles((theme) => ({
     paddingTop: `calc(${theme.spacing.xl} * 2)`,
     paddingBottom: `calc(${theme.spacing.xl} * 2)`,
     backgroundColor: "#FF006B",
-    // theme.colorScheme === "dark"
-    //   ? theme.colors.dark[6]
-    //   : theme.colors.gray[0],
+
     borderTop: `${rem(1)} solid ${
       theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[2]
     }`,
@@ -70,7 +68,6 @@ const useStyles = createStyles((theme) => ({
   },
 
   groups: {
-    // color: "white",
     display: "flex",
     flexWrap: "wrap",
     [theme.fn.smallerThan("sm")]: {
@@ -86,10 +83,6 @@ const useStyles = createStyles((theme) => ({
     display: "block",
     color: "#FFFFFF",
     fontWeight: "600px",
-    // color:
-    //   theme.colorScheme === "light"
-    //     ? theme.colors.dark[1]
-    //     : theme.colors.gray[6],
     fontSize: theme.fontSizes.md,
     paddingTop: rem(3),
     paddingBottom: rem(3),
@@ -105,7 +98,7 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 700,
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     marginBottom: `calc(${theme.spacing.xs} / 2)`,
-    // color: theme.colorScheme === "dark" ? theme.white : theme.black,
+ 
   },
 
   afterFooter: {
@@ -175,8 +168,7 @@ const Footer = () => {
         className={classes.link}
         component="a"
         href={link.link}
-        // onClick={(event) => event.preventDefault()
-        // }
+       
       >
         {link.label}
       </Text>
