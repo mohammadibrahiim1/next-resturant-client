@@ -9,6 +9,7 @@ import {
   Image,
   Button,
   Input,
+  Container,
 } from "@mantine/core";
 
 import {
@@ -52,13 +53,13 @@ const useStyles = createStyles((theme) => ({
     width: rem(270),
     [theme.fn.smallerThan("sm")]: {
       marginTop: theme.spacing.xs,
-      textAlign: "center",
+      textAlign: "left",
     },
   },
 
   inner: {
-    width: "60%",
-    margin: "auto",
+    // width: "60%",
+    // margin: "auto",
     display: "flex",
     justifyContent: "space-between",
 
@@ -120,6 +121,7 @@ const useStyles = createStyles((theme) => ({
     gap: "12px",
     [theme.fn.smallerThan("sm")]: {
       marginTop: theme.spacing.xs,
+      marginBottom: theme.spacing.md,
     },
   },
 
@@ -190,7 +192,7 @@ const Footer = () => {
 
   return (
     <footer className={classes.footer}>
-      <section className={classes.inner}>
+      <Container className={classes.inner}>
         <div>
           <div className={classes.logo}>
             <Image
@@ -274,7 +276,7 @@ const Footer = () => {
             <IconMailCheck /> <span>info@inilabs.net</span>
           </Text>{" "}
         </div>
-      </section>
+      </Container>
       <div className={classes.afterFooter}>
         <Text size="sm">© 2023 Food king by Ibrahim. All rights reserved.</Text>
       </div>
