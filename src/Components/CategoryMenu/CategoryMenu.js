@@ -1,5 +1,5 @@
 "use client";
-import { Container, Loader, createStyles } from "@mantine/core";
+import { Button, Container, Loader, Text, createStyles } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import CategoryItem from "../CategoryItem/CategoryItem";
@@ -20,6 +20,35 @@ const useStyles = createStyles(() => ({
     justifyContent: "space-between",
     alignItems: "center",
     gap: "9px",
+  },
+
+  heading: {
+    fontSize: "1.5rem",
+    lineHeight: "2rem",
+    fontWeight: "600",
+    textTransform: "capitalize",
+    color: "#000000",
+    // paddingBottom: "15px",
+  },
+  heading_container: {
+    display: "flex",
+    // gridTemplateColumns: "repeat(2,1fr)",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: "5px",
+    marginBottom: "15px",
+  },
+
+  btn_viewAll: {
+    color: "#FF006B",
+    textTransform: "capitalize",
+    backgroundColor: "#FCC2D7 !important",
+    twBgOpacity: "1",
+    "&:hover": {
+      backgroundColor: "#FF006B !important",
+      color: "#FFFFFF",
+      transition: ".3s",
+    },
   },
 }));
 
@@ -46,6 +75,12 @@ const CategoryMenu = () => {
   return (
     <div>
       <Container>
+        <div className={classes.heading_container}>
+          <Text className={classes.heading}>Our Menu</Text>
+          <Button className={classes.btn_viewAll} size="xs" radius={15}>
+            view all
+          </Button>
+        </div>
         <div className={classes.card_container}>
           {categories?.slice(0, 7).map((category) => (
             <>
