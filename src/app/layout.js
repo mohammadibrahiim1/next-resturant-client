@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body>
           <HeaderMenu></HeaderMenu>
-          <div>{children}</div>
+          <div className="py-11">{children}</div>
           <Footer></Footer>
         </body>
       </html>

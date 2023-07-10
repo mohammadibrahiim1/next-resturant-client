@@ -9,9 +9,14 @@ import {
   Transition,
   rem,
   Image,
+  Input,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import Link from "next/link";
+import { IconSearch } from "@tabler/icons-react";
+import ToggleMenu from "../../Components/ToggleMenu/ToggleMenu";
+import CartDrawer from "../CartDrawer/CartDrawer";
+import UserProfile from "../UserProfile/UserProfile";
 
 const HEADER_HEIGHT = rem(60);
 
@@ -69,23 +74,20 @@ const useStyles = createStyles((theme) => ({
 
   link: {
     display: "block",
-    lineHeight: 1,
+    lineHeight: "1.25rem",
     padding: `${rem(8)} ${rem(12)}`,
     borderRadius: theme.radius.sm,
     textDecoration: "none",
-    color:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[0]
-        : theme.colors.gray[7],
-    fontSize: theme.fontSizes.sm,
-    fontWeight: 500,
+    color: "#1F1F39",
+    fontSize: "0.875rem",
+    fontWeight: 600,
 
-    "&:hover": {
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[6]
-          : theme.colors.gray[0],
-    },
+    // "&:hover": {
+    //   backgroundColor:
+    //     theme.colorScheme === "dark"
+    //       ? theme.colors.dark[6]
+    //       : theme.colors.gray[0],
+    // },
 
     [theme.fn.smallerThan("sm")]: {
       borderRadius: 0,
@@ -95,21 +97,25 @@ const useStyles = createStyles((theme) => ({
 
   linkActive: {
     "&, &:hover": {
-      backgroundColor: theme.fn.variant({
-        variant: "light",
-        color: theme.primaryColor,
-      }).background,
-      color: theme.fn.variant({ variant: "light", color: theme.primaryColor })
-        .color,
+      // backgroundColor: theme.fn.variant({
+      //   variant: "light",
+      //   color: theme.primaryColor,
+      // }).background,
+      color: "#FF006B",
     },
   },
 }));
 
-const links = [{ link: "string", label: "string" }];
+const links = [
+  ,
+  { link: "/home", label: "Home" },
+  { link: "/menu", label: "Menu" },
+  { link: "/offers", label: "Offers" },
+];
 
 const HeaderMenu = () => {
   const [opened, { toggle, close }] = useDisclosure(false);
-  const [active, setActive] = useState(links[0].link);
+  const [active, setActive] = useState(links[0]?.link);
   const { classes, cx } = useStyles();
 
   const items = links.map((link) => (
@@ -132,16 +138,45 @@ const HeaderMenu = () => {
   return (
     <Header height={HEADER_HEIGHT} className={classes.root}>
       <Container className={classes.header}>
-        <div className={classes.logo}>
+        <Link href="/" className={classes.logo}>
           <Image
             src="https://i.ibb.co/Y048Z9J/menu-logo.png"
             alt=""
             srcset=""
           />
-        </div>
-        <Group spacing={5} className={classes.links}>
+        </Link>
+        <Group spacing={2} className={classes.links}>
           {items}
         </Group>
+
+        <div className="flex justify-between items-center gap-2">
+          <Group>
+            <Input
+              icon={<IconSearch height={20} width={20} />}
+              placeholder="search"
+              radius={25}
+              size="xs"
+              styles={(theme) => ({
+                input: {
+                  "&:focus-within": {
+                    borderColor: theme.colors.pink[7],
+                    transition: ".3s",
+                  },
+                },
+              })}
+            />
+          </Group>
+          <Group>
+            <ToggleMenu></ToggleMenu>
+          </Group>
+          <Group>
+            <CartDrawer></CartDrawer>
+            {/* <ToggleMenu></ToggleMenu> */}
+          </Group>
+          <Group>
+            <UserProfile></UserProfile>
+          </Group>
+        </div>
 
         <Burger
           opened={opened}
