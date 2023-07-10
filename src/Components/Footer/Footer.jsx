@@ -270,3 +270,15 @@ const Footer = () => {
 };
 
 export default Footer;
+
+// import React from 'react';
+
+// const NewFooter = () => {
+//   return (
+//     <div>
+//       this is footer
+//     </div>
+//   );
+// };
+
+// export default NewFooter;

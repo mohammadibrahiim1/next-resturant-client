@@ -1,11 +1,23 @@
-import HeaderCarousel from "@/Components/Carousel/HeaderCarousel";
+"use client";
+import Head from "next/head";
+import Home from "./Home/page";
+import { createStyles } from "@mantine/core";
+// import HeaderCarousel from "../Components/Carousel/HeaderCarousel";
 
-export default function Home() {
+
+// const useStyles = createStyles(() => ({
+//   home: {
+//     marginTop: "50px",
+//   },
+// }));
+const HomePage = () => {
+  // const { classes } = useStyles();
   return (
     <main>
-      <div>
-        <HeaderCarousel></HeaderCarousel>
+      <div className="py-8">
+        <Home></Home>
       </div>
     </main>
   );
-}
+};
+export default HomePage;
