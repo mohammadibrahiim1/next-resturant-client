@@ -14,9 +14,9 @@ const useStyles = createStyles(() => ({
   },
 
   heading: {
-    fontSize: "1.5rem",
+    fontSize: "2rem",
     lineHeight: "2rem",
-    fontWeight: "600",
+    fontWeight: "700",
     textTransform: "capitalize",
     color: "#000000",
     // paddingBottom: "15px",

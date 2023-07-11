@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Container } from "@mantine/core";
-import CategoryMenu from "../../Components/CategoryMenu/CategoryMenu";
+// import CategoryMenu from "../../Components/CategoryMenu/CategoryMenu";
 import MainMenu from "../../Components/MainMenu/MainMenu";
 
 const Menu = () => {
