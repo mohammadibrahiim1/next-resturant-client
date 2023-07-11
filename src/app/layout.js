@@ -33,6 +33,14 @@ export default function RootLayout({ children }) {
                   lg: 1140,
                   xl: 1320,
                 },
+                fontSizes: {
+                  xs: "0.6rem",
+                  sm: "0.75rem",
+                  md: "0.9rem",
+                  lg: "1rem",
+                  xl: "1.2rem",
+                  
+                },
               },
             },
           },

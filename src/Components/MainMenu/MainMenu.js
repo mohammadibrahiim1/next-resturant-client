@@ -90,10 +90,9 @@ const MainMenu = () => {
           </>
         ))}
       </div>
-
-      <section size="xs" px="xs">
+      <section>
         {Array.isArray(filterItems) &&
-          filterItems.map((item) => (
+          filterItems.slice(0, 1).map((item) => (
             <>
               <MenuItems item={item}></MenuItems>
             </>
