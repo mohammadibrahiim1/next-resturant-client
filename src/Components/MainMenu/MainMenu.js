@@ -1,11 +1,22 @@
-import { Card, Container, Image, Text, createStyles } from "@mantine/core";
+import {
+  Badge,
+  Button,
+  Card,
+  Container,
+  Group,
+  Image,
+  Text,
+  createStyles,
+} from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import MenuItems from "../../Components/MenuItems/MenuItems";
 
 const useStyles = createStyles(() => ({
   container: {
     display: "grid",
-    gridTemplateColumns: "repeat(7,1fr)",
+    gridTemplateColumns: "repeat(8,1fr)",
     justifyContent: "space-between",
     alignItems: "center",
     gap: "9px",
@@ -13,6 +24,8 @@ const useStyles = createStyles(() => ({
 }));
 
 const MainMenu = () => {
+  const [filterItems, setFilterItems] = useState([]);
+  console.log(filterItems);
   const { classes } = useStyles();
   const {
     data: menu = [],
@@ -23,10 +36,28 @@ const MainMenu = () => {
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/api/v1/allMenu");
       const data = await res.json();
-      console.log(data);
+      setFilterItems(data);
+      //   console.log(data);
       return data;
     },
   });
+
+  const handleFilterItems = async (slug) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/api/v1/menu?slug=${slug}`
+      );
+      //   const data = await res.json();
+      //   console.log(data);
+      setFilterItems(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+
+    // const data = await res.json();
+    // console.log(data);
+    // return data;
+  };
 
   return (
     <div>
@@ -34,6 +65,8 @@ const MainMenu = () => {
         {menu.map((item) => (
           <>
             <Card
+              onClick={() => handleFilterItems(item.slug)}
+              className="cursor-pointer"
               //   className={classes.card}
               // shadow="sm"
               // padding="xl"
@@ -57,6 +90,15 @@ const MainMenu = () => {
           </>
         ))}
       </div>
+
+      <section size="xs" px="xs">
+        {Array.isArray(filterItems) &&
+          filterItems.map((item) => (
+            <>
+              <MenuItems item={item}></MenuItems>
+            </>
+          ))}
+      </section>
     </div>
   );
 };

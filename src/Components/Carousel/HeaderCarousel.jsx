@@ -22,7 +22,7 @@ const data = [
 const HeaderCarousel = () => {
   const autoplay = useRef(Autoplay({ delay: 2000 }));
   return (
-    <Container>
+    <section>
       {" "}
       <Carousel
         mx="auto"
@@ -44,7 +44,7 @@ const HeaderCarousel = () => {
    <Carousel.Slide>2</Carousel.Slide>
    <Carousel.Slide>3</Carousel.Slide> */}
       </Carousel>
-    </Container>
+    </section>
   );
 };
 export default HeaderCarousel;

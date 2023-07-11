@@ -21,7 +21,7 @@ const useStyles = createStyles(() => ({
 
 const CategoryItem = ({ category }) => {
   const { classes } = useStyles();
-  console.log(category);
+  // console.log(category);
   const { thumb, name } = category;
   return (
     <div>

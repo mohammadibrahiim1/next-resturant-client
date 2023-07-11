@@ -137,7 +137,7 @@ const HeaderMenu = () => {
 
   return (
     <Header height={HEADER_HEIGHT} className={classes.root}>
-      <Container className={classes.header}>
+      <Container size="lg" className={classes.header}>
         <Link href="/" className={classes.logo}>
           <Image
             src="https://i.ibb.co/Y048Z9J/menu-logo.png"

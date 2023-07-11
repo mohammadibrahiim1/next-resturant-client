@@ -7,9 +7,9 @@ import MainMenu from "../../Components/MainMenu/MainMenu";
 const Menu = () => {
   return (
     <div>
-      <Container>
+      <section>
         <MainMenu></MainMenu>
-      </Container>
+      </section>
     </div>
   );
 };

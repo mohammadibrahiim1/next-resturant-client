@@ -3,7 +3,7 @@ import HeaderMenu from "../Components/HeaderMenu/HeaderMenu.jsx";
 import Footer from "../Components/Footer/Footer.jsx";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { MantineProvider } from "@mantine/core";
+import { Container, MantineProvider } from "@mantine/core";
 import {
   useQuery,
   useMutation,
@@ -22,12 +22,28 @@ export default function RootLayout({ children }) {
         withGlobalStyles
         withNormalizeCSS
         withCSSVariables
-        // theme={{ loader: "bars" }}
+        theme={{
+          components: {
+            Container: {
+              defaultProps: {
+                sizes: {
+                  xs: 540,
+                  sm: 720,
+                  md: 960,
+                  lg: 1140,
+                  xl: 1320,
+                },
+              },
+            },
+          },
+        }}
       >
         <html lang="en">
           <body>
             <HeaderMenu></HeaderMenu>
-            <div className="py-11">{children}</div>
+            <Container size="lg">
+              <div className="py-11">{children}</div>
+            </Container>
             <Footer></Footer>
           </body>
         </html>

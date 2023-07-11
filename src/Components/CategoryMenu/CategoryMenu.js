@@ -4,19 +4,10 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import CategoryItem from "../CategoryItem/CategoryItem";
 
-// async function getCategories() {
-//   //   return await (await fetch("http://localhost:5000/api/v1/categories")).json();
-//   // Fetch data from an API or any other source
-//   const response = await fetch("http://localhost:5000/api/v1/categories");
-//   const data = await response.json();
-//   return data;
-//   //   console.log(data);
-// }
-
 const useStyles = createStyles(() => ({
   card_container: {
     display: "grid",
-    gridTemplateColumns: "repeat(7,1fr)",
+    gridTemplateColumns: "repeat(8,1fr)",
     justifyContent: "space-between",
     alignItems: "center",
     gap: "9px",
@@ -37,6 +28,7 @@ const useStyles = createStyles(() => ({
     alignItems: "center",
     gap: "5px",
     marginBottom: "15px",
+    marginTop: " 80px",
   },
 
   btn_viewAll: {
@@ -54,7 +46,7 @@ const useStyles = createStyles(() => ({
 }));
 
 const CategoryMenu = () => {
-  const [viewAll, setViewAll] = useState(7);
+  const [viewAll, setViewAll] = useState(8);
   const handelViewAll = () => {
     setViewAll((preValue) => preValue + 1);
   };
@@ -69,7 +61,7 @@ const CategoryMenu = () => {
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/api/v1/categories");
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       return data;
     },
   });
@@ -80,7 +72,7 @@ const CategoryMenu = () => {
 
   return (
     <div>
-      <Container>
+      <section>
         <div className={classes.heading_container}>
           <Text className={classes.heading}>Our Menu</Text>
           <Button
@@ -99,7 +91,7 @@ const CategoryMenu = () => {
             </>
           ))}
         </div>
-      </Container>
+      </section>
     </div>
   );
 };

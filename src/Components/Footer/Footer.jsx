@@ -177,7 +177,7 @@ const Footer = () => {
 
   return (
     <footer className={classes.footer}>
-      <Container className={classes.inner}>
+      <Container size="lg" className={classes.inner}>
         <div>
           <div className={classes.logo}>
             <Image
