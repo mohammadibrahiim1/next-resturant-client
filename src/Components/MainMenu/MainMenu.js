@@ -21,7 +21,7 @@ const MainMenu = () => {
   } = useQuery({
     queryKey: ["menu"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/api/v1/menu");
+      const res = await fetch("http://localhost:5000/api/v1/allMenu");
       const data = await res.json();
       console.log(data);
       return data;
