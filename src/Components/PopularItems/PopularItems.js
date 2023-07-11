@@ -9,7 +9,8 @@ const useStyles = createStyles(() => ({
     gridTemplateColumns: "repeat(3,1fr)",
     justifyContent: "space-between",
     alignItems: "center",
-    gap: "12px",
+    rowGap: "22px",
+    columnGap: "10px",
     marginTop: "32px",
   },
   heading: {
