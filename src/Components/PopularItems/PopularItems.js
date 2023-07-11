@@ -1,3 +1,4 @@
+"use client";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import PopularItemsCard from "../PopularItemsCard/PopularItemsCard";
@@ -20,8 +21,6 @@ const useStyles = createStyles(() => ({
     textTransform: "capitalize",
     color: "#000000",
     marginTop: "78px",
-
-    // paddingBottom: "15px",
   },
 }));
 

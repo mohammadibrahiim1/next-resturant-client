@@ -1,16 +1,11 @@
-"use client";
-import Head from "next/head";
 import Home from "./home/page";
-import { createStyles } from "@mantine/core";
-// import HeaderCarousel from "../Components/Carousel/HeaderCarousel";
 
-// const useStyles = createStyles(() => ({
-//   home: {
-//     marginTop: "50px",
-//   },
-// }));
+export const metadata = {
+  title: "FoodKing - Restaurant Food Ordering & Delivery App",
+  description: "Restaurant Food Ordering & Delivery App",
+};
+
 const HomePage = () => {
-  // const { classes } = useStyles();
   return (
     <main>
       <div>

@@ -1,3 +1,4 @@
+
 import {
   Badge,
   Button,
@@ -13,13 +14,26 @@ import React, { useState } from "react";
 import axios from "axios";
 import MenuItems from "../../Components/MenuItems/MenuItems";
 
-const useStyles = createStyles(() => ({
+const useStyles = createStyles((theme) => ({
+  card: {
+    cursor: "pointer",
+  },
   container: {
     display: "grid",
     gridTemplateColumns: "repeat(8,1fr)",
     justifyContent: "space-between",
     alignItems: "center",
     gap: "9px",
+  },
+  linkActive: {
+    "&, &:hover": {
+      backgroundColor: theme.fn.variant({
+        variant: "light",
+        color: theme.primaryColor,
+      }).background,
+      color: theme.fn.variant({ variant: "light", color: theme.primaryColor })
+        .color,
+    },
   },
 }));
 
@@ -66,8 +80,8 @@ const MainMenu = () => {
           <>
             <Card
               onClick={() => handleFilterItems(item.slug)}
-              className="cursor-pointer"
-              //   className={classes.card}
+              // className="cursor-pointer"
+              className={classes.card}
               // shadow="sm"
               // padding="xl"
               // component="a"
