@@ -1,7 +1,7 @@
 "use client";
 import { Button, Container, Loader, Text, createStyles } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import CategoryItem from "../CategoryItem/CategoryItem";
 
 // async function getCategories() {
@@ -41,8 +41,9 @@ const useStyles = createStyles(() => ({
 
   btn_viewAll: {
     color: "#FF006B",
+    fontSize: "13px",
     textTransform: "capitalize",
-    backgroundColor: "#FCC2D7 !important",
+    backgroundColor: "#FFF0F6 !important",
     twBgOpacity: "1",
     "&:hover": {
       backgroundColor: "#FF006B !important",
@@ -53,6 +54,11 @@ const useStyles = createStyles(() => ({
 }));
 
 const CategoryMenu = () => {
+  const [viewAll, setViewAll] = useState(7);
+  const handelViewAll = () => {
+    setViewAll((preValue) => preValue + 1);
+  };
+
   const { classes } = useStyles();
   const {
     data: categories = [],
@@ -77,12 +83,17 @@ const CategoryMenu = () => {
       <Container>
         <div className={classes.heading_container}>
           <Text className={classes.heading}>Our Menu</Text>
-          <Button className={classes.btn_viewAll} size="xs" radius={15}>
+          <Button
+            onClick={handelViewAll}
+            className={classes.btn_viewAll}
+            size="xs"
+            radius={15}
+          >
             view all
           </Button>
         </div>
         <div className={classes.card_container}>
-          {categories?.slice(0, 7).map((category) => (
+          {categories?.slice(0, viewAll).map((category) => (
             <>
               <CategoryItem category={category}></CategoryItem>
             </>
