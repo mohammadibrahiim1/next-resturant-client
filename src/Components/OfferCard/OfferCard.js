@@ -1,12 +1,19 @@
 import { createStyles, Paper, Text, Title, Button, rem } from "@mantine/core";
+// import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import Link from "next/link";
+// import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+// import { Router, useRouter } from "next/router";
 
 const useStyles = createStyles((theme) => ({
   container: {
+    marginTop: "65px",
     display: "grid",
     gridTemplateColumns: "repeat(2,1fr)",
     justifyContent: "space-between",
     alignItems: "center",
-    gap: "22px",
+    gap: "28px",
   },
   card: {
     height: rem(136),
@@ -37,47 +44,51 @@ const useStyles = createStyles((theme) => ({
 
 const data = [
   {
-    image: "https://i.ibb.co/6m8wd85/savory-and-satisfying-cover.png",
+    slug: "uplifting-anytime",
+    image: "https://i.ibb.co/522nYQM/uplifting-anytime-cover.png",
   },
   {
-    image: "https://i.ibb.co/522nYQM/uplifting-anytime-cover.png",
+    slug: "savory-and-satisfying",
+    image: "https://i.ibb.co/6m8wd85/savory-and-satisfying-cover.png",
   },
 ];
 
-// interface ArticleCardImageProps {
-//   image: string;
-//   title: string;
-//   category: string;
-// https://i.ibb.co/6m8wd85/savory-and-satisfying-cover.png
-// https://i.ibb.co/522nYQM/uplifting-anytime-cover.png
-// }
 const OfferCard = () => {
+  const router = useRouter();
+  // const { slug } = router.query;
   const { classes } = useStyles();
+
+  const handleOffer = async (slug) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/api/v1/offer?slug=${slug}`
+      );
+
+      console.log(res.data);
+      router.push(`/offers/${slug},res.data`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
       <div className={classes.container}>
         {data.map((item) => (
           <>
-            <Paper
-              shadow="md"
-              p="xl"
-              radius="md"
-              sx={{ backgroundImage: `url(${item.image})` }}
-              className={classes.card}
+            <div
+              className="cursor-pointer"
+              // href={`offers/${slug}`}
+              onClick={() => handleOffer(item.slug)}
             >
-              <div>
-                {/* <Text className={classes.category} size="xs">
-                  {category}
-                </Text> */}
-                {/* <Title order={3} className={classes.title}>
-                  {title}
-                </Title> */}
-              </div>
-              {/* <Button variant="white" color="dark">
-                Read article
-              </Button> */}
-            </Paper>
+              <Paper
+                shadow="md"
+                p="xl"
+                radius="md"
+                sx={{ backgroundImage: `url(${item.image})` }}
+                className={classes.card}
+              ></Paper>
+            </div>
           </>
         ))}
       </div>

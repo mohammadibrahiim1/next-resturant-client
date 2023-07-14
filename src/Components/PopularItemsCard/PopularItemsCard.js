@@ -63,7 +63,7 @@ const useStyles = createStyles((theme) => ({
 
 const PopularItemsCard = ({ popularItem }) => {
   const { classes } = useStyles();
-  console.log(popularItem);
+  // console.log(popularItem);
   const { flat_price, cover, name, description } = popularItem;
   return (
     <div>
