@@ -39,7 +39,7 @@ const useStyles = createStyles((theme) => ({
 
 const MainMenu = () => {
   const [filterItems, setFilterItems] = useState([]);
-  console.log(filterItems);
+  // console.log(filterItems);
   const { classes } = useStyles();
   const {
     data: menu = [],

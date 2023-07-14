@@ -4,6 +4,7 @@ import Footer from "../Components/Footer/Footer.jsx";
 import "./globals.css";
 import { Container, MantineProvider } from "@mantine/core";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import DataContext from "../Context/DataContext";
 
 // export const metadata = {
 //   title: "FoodKing - Restaurant Food Ordering & Delivery App",
@@ -47,7 +48,10 @@ export default function RootLayout({ children }) {
           <body>
             <HeaderMenu></HeaderMenu>
             <Container size="lg">
-              <div className="py-11">{children}</div>
+              <div className="py-11">
+                {" "}
+                <DataContext>{children} </DataContext>
+              </div>
             </Container>
             <Footer></Footer>
           </body>

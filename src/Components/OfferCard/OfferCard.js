@@ -3,7 +3,7 @@ import { createStyles, Paper, Text, Title, Button, rem } from "@mantine/core";
 import axios from "axios";
 import Link from "next/link";
 // import { useRouter } from "next/router";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 // import { Router, useRouter } from "next/router";
 
 const useStyles = createStyles((theme) => ({
@@ -54,32 +54,20 @@ const data = [
 ];
 
 const OfferCard = () => {
-  const router = useRouter();
-  // const { slug } = router.query;
+  // const router = useRouter();
+
   const { classes } = useStyles();
 
-  const handleOffer = async (slug) => {
-    try {
-      const res = await axios.get(
-        `http://localhost:5000/api/v1/offer?slug=${slug}`
-      );
-
-      console.log(res.data);
-      router.push(`/offers/${slug},res.data`);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+ 
   return (
     <div>
       <div className={classes.container}>
         {data.map((item) => (
           <>
-            <div
+            <Link
               className="cursor-pointer"
-              // href={`offers/${slug}`}
-              onClick={() => handleOffer(item.slug)}
+              href={`offers/${item.slug}`}
+              // onClick={() => handleOffer(item.slug)}
             >
               <Paper
                 shadow="md"
@@ -88,7 +76,7 @@ const OfferCard = () => {
                 sx={{ backgroundImage: `url(${item.image})` }}
                 className={classes.card}
               ></Paper>
-            </div>
+            </Link>
           </>
         ))}
       </div>

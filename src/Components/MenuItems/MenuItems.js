@@ -9,7 +9,8 @@ import {
   createStyles,
 } from "@mantine/core";
 import { IconShoppingBag } from "@tabler/icons-react";
-import React from "react";
+import React, { useContext } from "react";
+import { ApiContext } from "../../Context/DataContext";
 
 const useStyles = createStyles(() => ({
   card_container: {
@@ -53,9 +54,10 @@ const useStyles = createStyles(() => ({
 }));
 
 const MenuItems = ({ item }) => {
+  const { addToCart } = useContext(ApiContext);
   const { classes } = useStyles();
   const { items } = item;
-  console.log(items);
+  // console.log(items);
 
   return (
     <div>
@@ -95,7 +97,12 @@ const MenuItems = ({ item }) => {
                       <Text size="lg" color="dark" weight={700}>
                         ${item.flat_price}
                       </Text>
-                      <Button className={classes.btn} size="xs" radius="lg">
+                      <Button
+                        onClick={() => addToCart(item)}
+                        className={classes.btn}
+                        size="xs"
+                        radius="lg"
+                      >
                         <IconShoppingBag height={16} />
                         <Text weight={700}>add</Text>
                       </Button>

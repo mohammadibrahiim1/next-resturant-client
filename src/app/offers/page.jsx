@@ -9,8 +9,8 @@ const Offers = () => {
     <div>
       <section>
         <Text
-          mt={46}
-          mb={21}
+          // mt={46}
+          mb={18}
           color="#FF006B"
           tt="capitalize"
           fz="28px"
@@ -19,7 +19,6 @@ const Offers = () => {
           All Offers
         </Text>
         <OfferCard></OfferCard>
-        {/* <OfferItems></OfferItems> */}
       </section>
     </div>
   );
