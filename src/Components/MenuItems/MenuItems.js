@@ -1,16 +1,9 @@
-import {
-  Badge,
-  Button,
-  Card,
-  Container,
-  Group,
-  Image,
-  Text,
-  createStyles,
-} from "@mantine/core";
+import { Badge, Button, Card, Container, Group, Image, Modal, Text, createStyles } from "@mantine/core";
 import { IconShoppingBag } from "@tabler/icons-react";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ApiContext } from "../../Context/DataContext";
+import { useDisclosure } from "@mantine/hooks";
+import CartModal from "../../Components/CartModal/CartModal";
 
 const useStyles = createStyles(() => ({
   card_container: {
@@ -53,24 +46,27 @@ const useStyles = createStyles(() => ({
   },
 }));
 
-const MenuItems = ({ item }) => {
-  const { addToCart } = useContext(ApiContext);
+const MenuItems = ({ item, setSelectItem }) => {
+  // const [opened, { open, close }] = useDisclosure(false);
+  // const { addToCart } = useContext(ApiContext);
   const { classes } = useStyles();
-  const { items } = item;
-  // console.log(items);
+  const { items, addons } = item;
+
+  // const [selectItem, setSelectedItem] = useState(null);
+  // console.log(selectItem);
+
+  // const selectedItem = () => {
+  //   setSelectedItem(items);
+  // };
 
   return (
     <div>
       <section>
-        <Text
-          mt={46}
-          mb={21}
-          color="#FF006B"
-          tt="capitalize"
-          fz="28px"
-          fw={700}
-        >
-          {item.slug}
+        {/* <Modal size="lg" opened={opened} onClose={close} title="Authentication">
+          Modal content
+        </Modal> */}
+        <Text mt={46} mb={21} color="#FF006B" tt="capitalize" fz="28px" fw={700}>
+          {item.name}
         </Text>
         <div className={classes.card_container}>
           {items?.map((item) => (
@@ -98,7 +94,8 @@ const MenuItems = ({ item }) => {
                         ${item.flat_price}
                       </Text>
                       <Button
-                        onClick={() => addToCart(item)}
+                        onClick={()=>setSelectItem(item)}
+                        // onClick={() => addToCart(item)}
                         className={classes.btn}
                         size="xs"
                         radius="lg"
@@ -106,6 +103,7 @@ const MenuItems = ({ item }) => {
                         <IconShoppingBag height={16} />
                         <Text weight={700}>add</Text>
                       </Button>
+                      {/* <CartModal selectItem={selectItem} open={open} opened={opened} close={close}></CartModal> */}
                     </div>
                   </div>
                 </Card.Section>

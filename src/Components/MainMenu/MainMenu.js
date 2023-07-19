@@ -1,18 +1,9 @@
-
-import {
-  Badge,
-  Button,
-  Card,
-  Container,
-  Group,
-  Image,
-  Text,
-  createStyles,
-} from "@mantine/core";
+import { Badge, Button, Card, Container, Group, Image, Text, createStyles } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import axios from "axios";
 import MenuItems from "../../Components/MenuItems/MenuItems";
+import CartModal from "../CartModal/CartModal";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -31,14 +22,14 @@ const useStyles = createStyles((theme) => ({
         variant: "light",
         color: theme.primaryColor,
       }).background,
-      color: theme.fn.variant({ variant: "light", color: theme.primaryColor })
-        .color,
+      color: theme.fn.variant({ variant: "light", color: theme.primaryColor }).color,
     },
   },
 }));
 
 const MainMenu = () => {
   const [filterItems, setFilterItems] = useState([]);
+  const [selectItem, setSelectItem] = useState(null);
   // console.log(filterItems);
   const { classes } = useStyles();
   const {
@@ -58,9 +49,7 @@ const MainMenu = () => {
 
   const handleFilterItems = async (slug) => {
     try {
-      const res = await axios.get(
-        `http://localhost:5000/api/v1/menu?slug=${slug}`
-      );
+      const res = await axios.get(`http://localhost:5000/api/v1/menu?slug=${slug}`);
       //   const data = await res.json();
       //   console.log(data);
       setFilterItems(res.data);
@@ -89,13 +78,7 @@ const MainMenu = () => {
               target="_blank"
             >
               <Card.Section className="w-32 h-32 flex flex-col items-center text-center gap-4 p-3 c-h-30 rounded-2xl border-b-2 border-transparent transition hover:bg-[#FFEDF4] ">
-                <Image
-                  src={item.thumb}
-                  height={48}
-                  width={75}
-                  mx="auto"
-                  alt={item.name}
-                />
+                <Image src={item.thumb} height={48} width={75} mx="auto" alt={item.name} />
                 <Text weight={600} w={85} size="xs">
                   {item.name}
                 </Text>
@@ -105,12 +88,15 @@ const MainMenu = () => {
         ))}
       </div>
       <section>
-        {Array.isArray(filterItems) &&
-          filterItems.slice(0, 1).map((item) => (
-            <>
-              <MenuItems item={item}></MenuItems>
-            </>
-          ))}
+        <div>
+          {Array.isArray(filterItems) &&
+            filterItems.slice(0, 1).map((item) => (
+              <>
+                <MenuItems item={item} setSelectItem={setSelectItem}></MenuItems>
+              </>
+            ))}
+        </div>
+        <div>{<CartModal selectItem={selectItem} setSelectItem={setSelectItem}></CartModal>}</div>
       </section>
     </div>
   );
