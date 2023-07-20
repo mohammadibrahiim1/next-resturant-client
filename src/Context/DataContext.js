@@ -72,6 +72,7 @@ const DataContext = ({ children }) => {
 
   const info = {
     addToCart,
+    // open,
     allItems,
     categories,
     handleFilterItems,

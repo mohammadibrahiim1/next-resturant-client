@@ -1,23 +1,19 @@
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button, Group } from "@mantine/core";
 
-const CartModal = ({ cart, isOpen, onClose }) => {
+const CartModal = ({ cart }) => {
   console.log(cart);
+  const [opened, { open, close }] = useDisclosure(false);
 
-  if (!isOpen) {
+  if (open) {
     return true;
   }
   //   const [opened, { close }] = useDisclosure(false);
 
   return (
     <>
-      <Modal
-        // isOpen={isModalOpen}
-        //  opened={opened}
-        onClick={onClose}
-        title="Authentication"
-      >
-        Modal content
+      <Modal opened={opened} onClose={close} title="Authentication" centered>
+        {/* Modal content */}
       </Modal>
     </>
   );
