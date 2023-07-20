@@ -1,9 +1,10 @@
 import { Badge, Button, Card, Container, Group, Image, Text, createStyles } from "@mantine/core";
-import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import MenuItems from "../../Components/MenuItems/MenuItems";
 import CartModal from "../CartModal/CartModal";
+import { ApiContext } from "../../Context/DataContext";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -28,44 +29,15 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const MainMenu = () => {
-  const [filterItems, setFilterItems] = useState([]);
-  const [selectItem, setSelectItem] = useState(null);
-  // console.log(filterItems);
+  const { categories, allItems, handleFilterItems } = useContext(ApiContext);
+  // console.log(categories);
+
   const { classes } = useStyles();
-  const {
-    data: menu = [],
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["menu"],
-    queryFn: async () => {
-      const res = await fetch("http://localhost:5000/api/v1/allMenu");
-      const data = await res.json();
-      setFilterItems(data);
-      //   console.log(data);
-      return data;
-    },
-  });
-
-  const handleFilterItems = async (slug) => {
-    try {
-      const res = await axios.get(`http://localhost:5000/api/v1/menu?slug=${slug}`);
-      //   const data = await res.json();
-      //   console.log(data);
-      setFilterItems(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-
-    // const data = await res.json();
-    // console.log(data);
-    // return data;
-  };
 
   return (
     <div>
       <div className={classes.container}>
-        {menu.map((item) => (
+        {categories?.slice(0, 8)?.map((item) => (
           <>
             <Card
               onClick={() => handleFilterItems(item.slug)}
@@ -89,14 +61,29 @@ const MainMenu = () => {
       </div>
       <section>
         <div>
-          {Array.isArray(filterItems) &&
-            filterItems.slice(0, 1).map((item) => (
+          {
+            // allItems ? (
+            allItems?.slice(0, 1)?.map((item) => (
               <>
-                <MenuItems item={item} setSelectItem={setSelectItem}></MenuItems>
+                <MenuItems
+                  item={item}
+                  // setSelectItem={setSelectItem}
+                ></MenuItems>
               </>
-            ))}
+            ))
+            // )
+            // : (
+            //   <p className="text-danger">No Food Items Found</p>
+            // )
+          }
         </div>
-        <div>{<CartModal selectItem={selectItem} setSelectItem={setSelectItem}></CartModal>}</div>
+        {/* <div>
+          {
+            <CartModal
+            //  selectItem={selectItem} setSelectItem={setSelectItem}
+            ></CartModal>
+          }
+        </div> */}
       </section>
     </div>
   );

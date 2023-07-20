@@ -1,9 +1,20 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+
 export const ApiContext = createContext();
 
 const DataContext = ({ children }) => {
   const [cart, setCart] = useState([]);
-  console.log(cart);
+  const [allItems, setAllItems] = useState([]);
+  // console.log(allItems);
+  const [filterItems, setFilterItems] = useState("");
+  // console.log(filterItems);
+  const [categories, setCategories] = useState([]);
+
+  const [isModalOpen, setModalOpen] = useState(false);
+  console.log(isModalOpen);
+
+  // console.log(filterItems);
 
   const addToCart = (selectedItem) => {
     let newCart = [];
@@ -16,6 +27,7 @@ const DataContext = ({ children }) => {
       newCart = [...rest, exists];
     }
     setCart(newCart);
+    setModalOpen(true);
     // toast.success("added successfully");
     localStorage.setItem("newCart", JSON.stringify(newCart));
   };
@@ -27,34 +39,48 @@ const DataContext = ({ children }) => {
     // toast.error("remove item from cart");
   };
 
-  // const addToCart = async (item) => {
-  //   try {
-  //     await fetch("http://localhost:5000/api/v1/cart", {
-  //       method: "POST",
-  //       headers: {
-  //         "content-type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         item,
-  //       }),
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         console.log(data);
-  //         if (data.acknowledged) {
-  //           window.alert("saved successfully");
-  //         } else {
-  //           console.error(error.message);
-  //         }
-  //       });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
-  //   setCart(item);
-  // };
+  useEffect(() => {
+    fetch("http://localhost:5000/api/v1/categories")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setCategories(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/v1/allMenu")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setAllItems(data);
+      });
+  }, []);
+
+  const handleFilterItems = (slug) => {
+    fetch(`http://localhost:5000/api/v1/allMenu?slug=${slug}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setAllItems(data);
+        console.log(data);
+      });
+  };
+
   const info = {
     addToCart,
+    allItems,
+    categories,
+    handleFilterItems,
+    filterItems,
+    setFilterItems,
+    removerFromCart,
+    isModalOpen,
+    closeModal,
+    cart,
   };
   return (
     <div>

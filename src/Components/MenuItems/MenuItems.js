@@ -3,7 +3,8 @@ import { IconShoppingBag } from "@tabler/icons-react";
 import React, { useContext, useState } from "react";
 import { ApiContext } from "../../Context/DataContext";
 import { useDisclosure } from "@mantine/hooks";
-import CartModal from "../../Components/CartModal/CartModal";
+import CartModal from "../CartModal/CartModal";
+// import CartModal from "../../Components/CartModal/CartModal";
 
 const useStyles = createStyles(() => ({
   card_container: {
@@ -47,8 +48,8 @@ const useStyles = createStyles(() => ({
 }));
 
 const MenuItems = ({ item, setSelectItem }) => {
-  // const [opened, { open, close }] = useDisclosure(false);
-  // const { addToCart } = useContext(ApiContext);
+  // const [opened] = useDisclosure(false);
+  const { addToCart, isModalOpen, closeModal, cart } = useContext(ApiContext);
   const { classes } = useStyles();
   const { items, addons } = item;
 
@@ -62,9 +63,6 @@ const MenuItems = ({ item, setSelectItem }) => {
   return (
     <div>
       <section>
-        {/* <Modal size="lg" opened={opened} onClose={close} title="Authentication">
-          Modal content
-        </Modal> */}
         <Text mt={46} mb={21} color="#FF006B" tt="capitalize" fz="28px" fw={700}>
           {item.name}
         </Text>
@@ -94,8 +92,8 @@ const MenuItems = ({ item, setSelectItem }) => {
                         ${item.flat_price}
                       </Text>
                       <Button
-                        onClick={()=>setSelectItem(item)}
-                        // onClick={() => addToCart(item)}
+                        // onClick={() => setSelectItem(item)}
+                        onClick={() => addToCart(item)}
                         className={classes.btn}
                         size="xs"
                         radius="lg"
@@ -103,7 +101,9 @@ const MenuItems = ({ item, setSelectItem }) => {
                         <IconShoppingBag height={16} />
                         <Text weight={700}>add</Text>
                       </Button>
-                      {/* <CartModal selectItem={selectItem} open={open} opened={opened} close={close}></CartModal> */}
+                      <CartModal isOpen={isModalOpen} onClose={closeModal} cart={cart}>
+                   
+                      </CartModal>
                     </div>
                   </div>
                 </Card.Section>

@@ -1,8 +1,9 @@
 "use client";
 import { Button, Container, Loader, Text, createStyles } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import CategoryItem from "../CategoryItem/CategoryItem";
+import { ApiContext } from "../../Context/DataContext";
 
 const useStyles = createStyles(() => ({
   card_container: {
@@ -46,25 +47,26 @@ const useStyles = createStyles(() => ({
 }));
 
 const CategoryMenu = () => {
+  const { categories } = useContext(ApiContext);
   const [viewAll, setViewAll] = useState(8);
   const handelViewAll = () => {
     setViewAll((preValue) => preValue + 1);
   };
 
   const { classes } = useStyles();
-  const {
-    data: categories = [],
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["categories"],
-    queryFn: async () => {
-      const res = await fetch("http://localhost:5000/api/v1/categories");
-      const data = await res.json();
-      // console.log(data);
-      return data;
-    },
-  });
+  // const {
+  //   data: categories = [],
+  //   isLoading,
+  //   refetch,
+  // } = useQuery({
+  //   queryKey: ["categories"],
+  //   queryFn: async () => {
+  //     const res = await fetch("http://localhost:5000/api/v1/categories");
+  //     const data = await res.json();
+  //     // console.log(data);
+  //     return data;
+  //   },
+  // });
 
   //   if (isLoading || !categories) {
   //     return <Loader color="pink" variant="bars" />;
@@ -75,12 +77,7 @@ const CategoryMenu = () => {
       <section>
         <div className={classes.heading_container}>
           <Text className={classes.heading}>Our Menu</Text>
-          <Button
-            onClick={handelViewAll}
-            className={classes.btn_viewAll}
-            size="xs"
-            radius={15}
-          >
+          <Button onClick={handelViewAll} className={classes.btn_viewAll} size="xs" radius={15}>
             view all
           </Button>
         </div>
