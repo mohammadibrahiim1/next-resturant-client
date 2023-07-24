@@ -1,10 +1,14 @@
 import React, { createContext, useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-hot-toast";
+// import { useQuery } from "@tanstack/react-query";
 
 export const ApiContext = createContext();
+const cartFromLocalStorage = JSON.parse(localStorage.getItem("newCart") || "[]");
 
 const DataContext = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  // const [productQuantity, setProductQuantity] = useState(1);
+  const [cart, setCart] = useState(cartFromLocalStorage);
+  console.log(cart);
   const [allItems, setAllItems] = useState([]);
   // console.log(allItems);
   const [filterItems, setFilterItems] = useState("");
@@ -12,7 +16,7 @@ const DataContext = ({ children }) => {
   const [categories, setCategories] = useState([]);
 
   const [isModalOpen, setModalOpen] = useState(false);
-  console.log(isModalOpen);
+  // console.log(isModalOpen);
 
   // console.log(filterItems);
 
@@ -24,10 +28,12 @@ const DataContext = ({ children }) => {
       newCart = [...cart, selectedItem];
     } else {
       const rest = cart.filter((item) => item._id !== selectedItem._id);
+      exists.quantity = exists.quantity + 1;
       newCart = [...rest, exists];
     }
+    toast.success(`added ${selectedItem.name} successfully `);
     setCart(newCart);
-    setModalOpen(true);
+    // setModalOpen(true);
     // toast.success("added successfully");
     localStorage.setItem("newCart", JSON.stringify(newCart));
   };
@@ -47,7 +53,7 @@ const DataContext = ({ children }) => {
     fetch("http://localhost:5000/api/v1/categories")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setCategories(data);
       });
   }, []);
@@ -56,7 +62,7 @@ const DataContext = ({ children }) => {
     fetch("http://localhost:5000/api/v1/allMenu")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setAllItems(data);
       });
   }, []);
@@ -66,7 +72,7 @@ const DataContext = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         setAllItems(data);
-        console.log(data);
+        // console.log(data);
       });
   };
 
@@ -82,6 +88,8 @@ const DataContext = ({ children }) => {
     isModalOpen,
     closeModal,
     cart,
+    // setProductQuantity,
+    // productQuantity,
   };
   return (
     <div>

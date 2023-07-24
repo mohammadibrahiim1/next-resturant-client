@@ -2,7 +2,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button, Group } from "@mantine/core";
 
 const CartModal = ({ cart }) => {
-  console.log(cart);
+  // console.log(cart);
   const [opened, { open, close }] = useDisclosure(false);
 
   if (open) {
