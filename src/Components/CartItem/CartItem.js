@@ -8,31 +8,35 @@ import { FaTrash } from "react-icons/fa";
 import { ApiContext } from "../../Context/DataContext";
 
 const CartItem = ({ item, removerFromCart }) => {
-  // const { productQuantity, setProductQuantity } = useContext(ApiContext);
   const [productQuantity, setProductQuantity] = useState(1);
 
   const increaseQuantity = () => {
     setProductQuantity(productQuantity + 1);
   };
+
   const decreaseQuantity = () => {
     if (productQuantity > 1) {
       setProductQuantity(productQuantity - 1);
     }
   };
-
+  // let total = 0;
   const { cover, name, price, _id } = item;
   const newPrice = price * productQuantity;
   localStorage.setItem("Price", newPrice);
+
   return (
     <div>
       <div class="justify-between mb-4 mt-4 rounded-lg bg-white p-3  shadow-md sm:flex sm:justify-start">
-        <img src={cover} alt="item image" srcset="" className="h-12 w-12 rounded" />
+        <img src={cover} alt="image" srcset="" className="h-12 w-12 rounded" />
         <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
           <div class="mt-5 sm:mt-0">
             <h2 class="text-sm font-semibold text-primary">{name}</h2>
             <p class="mt-1 text-sm font-semibold text-error">
               Total : <span className="text-error">{newPrice}</span> $
             </p>
+            {/* <p class="mt-1 text-sm font-semibold text-error">
+              Total : <span className="text-error">{newPrice}</span> $
+            </p> */}
           </div>
           <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
             <div class="flex justify-between items-center   border-gray-100">

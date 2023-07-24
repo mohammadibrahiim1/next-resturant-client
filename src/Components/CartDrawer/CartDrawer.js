@@ -1,9 +1,10 @@
 import { Button, Drawer, Group, createStyles } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconShoppingBag } from "@tabler/icons-react";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ApiContext } from "../../Context/DataContext";
 import CartItem from "../../Components/CartItem/CartItem";
+import { FaTrash } from "react-icons/fa";
 
 const useStyles = createStyles(() => ({
   cart_button: {
@@ -17,7 +18,8 @@ const useStyles = createStyles(() => ({
 const CartDrawer = () => {
   const { classes } = useStyles();
   const [opened, { open, close }] = useDisclosure(false);
-  const { cart, removerFromCart, productQuantity, setProductQuantity } = useContext(ApiContext);
+  const { cart, removerFromCart } = useContext(ApiContext);
+
   console.log(cart);
   return (
     <div>
@@ -31,13 +33,7 @@ const CartDrawer = () => {
           <Drawer.Body>
             {cart?.map((item) => (
               <>
-                <CartItem
-                  item={item}
-                  // setProductQuantity={setProductQuantity}
-                  // increaseQuantity={increaseQuantity}
-                  removerFromCart={removerFromCart}
-                  // productQuantity={productQuantity}
-                ></CartItem>
+                <CartItem item={item} removerFromCart={removerFromCart}></CartItem>
               </>
             ))}
           </Drawer.Body>
