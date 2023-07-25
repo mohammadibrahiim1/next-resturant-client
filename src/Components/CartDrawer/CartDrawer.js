@@ -53,7 +53,7 @@ const CartDrawer = () => {
               )}
             </div>
             <div className="flex justify-between  mt-[560px] rounded-lg bg-white p-3  shadow-md">
-              <Text c={"#000"} fw={600} fz={"sm"}>
+              <Text c={"#000"} fw={700} fz={"sm"}>
                 SubTotal :{" "}
               </Text>
               <Text c={"#4DB759"} fw={600} fz={"sm"}>

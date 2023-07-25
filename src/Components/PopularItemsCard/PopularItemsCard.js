@@ -1,22 +1,14 @@
 "use client";
-import {
-  Avatar,
-  Button,
-  Card,
-  Group,
-  Image,
-  Text,
-  createStyles,
-} from "@mantine/core";
+import { Avatar, Button, Card, Group, Image, Text, createStyles } from "@mantine/core";
 import { IconShoppingBag } from "@tabler/icons-react";
-import React from "react";
+import React, { useContext } from "react";
+import { ApiContext } from "../../Context/DataContext";
 
 const useStyles = createStyles((theme) => ({
   card: {
     width: "357px",
     height: "124px",
-    backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+    backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
     // border: "1px solid gray",
   },
 
@@ -62,28 +54,15 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const PopularItemsCard = ({ popularItem }) => {
+  const { addToCart } = useContext(ApiContext);
   const { classes } = useStyles();
-  // console.log(popularItem);
+
   const { flat_price, cover, name, description } = popularItem;
   return (
     <div>
-      {/* <div className={classes.card}>
-        <div className={classes.group}>
-          <div className={classes.image}>
-            <img src={cover} alt="" srcset="" />
-          </div>
-          <div>
-            <div>
-              <h5>{name}</h5>
-              <h5>{description.slice(0, 5)}</h5>
-              <h5>{flat_price}</h5>
-            </div>
-          </div>
-        </div>
-      </div> */}
       <Card withBorder radius="md" p={0} className={classes.card}>
         <Group noWrap spacing={0}>
-          <Image src={cover} height={124} width={112} />
+          <Image src={cover} alt="cover photo" height={124} width={112} />
           <div className={classes.body}>
             <Text transform="capitalize" color="dark" weight={700} size="sm">
               {name.slice(0, 17)}
@@ -96,23 +75,11 @@ const PopularItemsCard = ({ popularItem }) => {
               <Text size="lg" color="dark" weight={700}>
                 ${flat_price}
               </Text>
-              <Button className={classes.btn} size="xs" radius="lg">
+              <Button onClick={() => addToCart(popularItem)} className={classes.btn} size="xs" radius="lg">
                 <IconShoppingBag height={16} />
                 <Text weight={700}>add</Text>
               </Button>
             </div>
-            {/* <Group noWrap spacing="xs">
-              <Group spacing="xs" noWrap>
-                <Avatar size={20} src={author.avatar} />
-                <Text size="xs">{author.name}</Text>
-              </Group>
-              <Text size="xs" color="dimmed">
-                •
-              </Text>
-              <Text size="xs" color="dimmed">
-                {date}
-              </Text>
-            </Group> */}
           </div>
         </Group>
       </Card>

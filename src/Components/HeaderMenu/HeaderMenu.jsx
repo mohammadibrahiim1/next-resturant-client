@@ -18,7 +18,7 @@ import ToggleMenu from "../../Components/ToggleMenu/ToggleMenu";
 import CartDrawer from "../CartDrawer/CartDrawer";
 import UserProfile from "../UserProfile/UserProfile";
 
-const HEADER_HEIGHT = rem(60);
+const HEADER_HEIGHT = rem(80);
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -126,7 +126,7 @@ const HeaderMenu = () => {
         [classes.linkActive]: active === link.link,
       })}
       onClick={(event) => {
-        // event.preventDefault();
+      
         setActive(link.link);
         close();
       }}

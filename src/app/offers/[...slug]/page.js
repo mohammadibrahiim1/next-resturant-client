@@ -5,7 +5,8 @@ import axios from "axios";
 
 import { useRouter } from "next/router";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ApiContext } from "../../../Context/DataContext";
 
 const useStyles = createStyles((theme) => ({
   // container: {
@@ -84,6 +85,7 @@ const useStyles = createStyles((theme) => ({
 
 const OfferItems = ({ params }) => {
   const { classes } = useStyles();
+  const { addToCart } = useContext(ApiContext);
   // const router = useRouter();
 
   const [data, setData] = useState([]);
@@ -92,9 +94,7 @@ const OfferItems = ({ params }) => {
 
   const handleOffer = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:5000/api/v1/offer?slug=${slug}`
-      );
+      const res = await axios.get(`http://localhost:5000/api/v1/offer?slug=${slug}`);
 
       setData(res.data);
     } catch (error) {
@@ -147,7 +147,7 @@ const OfferItems = ({ params }) => {
                           <Text size="lg" color="dark" weight={700}>
                             ${item.flat_price}
                           </Text>
-                          <Button className={classes.btn} size="xs" radius="lg">
+                          <Button onClick={() => addToCart(item)} className={classes.btn} size="xs" radius="lg">
                             <IconShoppingBag height={16} />
                             <Text weight={700}>add</Text>
                           </Button>

@@ -54,11 +54,8 @@ const data = [
 ];
 
 const OfferCard = () => {
-  // const router = useRouter();
-
   const { classes } = useStyles();
 
- 
   return (
     <div>
       <div className={classes.container}>
