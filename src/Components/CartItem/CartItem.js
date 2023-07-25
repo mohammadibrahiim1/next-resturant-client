@@ -7,7 +7,7 @@ import React, { useContext, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import { ApiContext } from "../../Context/DataContext";
 
-const CartItem = ({ item, getCartTotal,removeFromCart }) => {
+const CartItem = ({ item, getCartTotal, removeFromCart, increaseQuantity, decreaseQuantity }) => {
   // const [productQuantity, setProductQuantity] = useState(1);
 
   // const increaseQuantity = () => {
@@ -21,7 +21,7 @@ const CartItem = ({ item, getCartTotal,removeFromCart }) => {
   // };
   // let total = 0;
   // let quantity = 0;
-  const { cover, name, convert_price, _id } = item;
+  const { cover, name, convert_price, _id, quantity = 0 } = item;
   // const itemTotalPrice = price * productQuantity;
 
   // localStorage.setItem("Price", newPrice);
@@ -44,7 +44,7 @@ const CartItem = ({ item, getCartTotal,removeFromCart }) => {
             <div class="flex justify-between items-center   border-gray-100">
               {/* <div className="mr-5"> */}
               <span
-                // onClick={decreaseQuantity}
+                onClick={() => decreaseQuantity(item)}
                 class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
               >
                 {" "}
@@ -54,11 +54,11 @@ const CartItem = ({ item, getCartTotal,removeFromCart }) => {
               <input
                 class="h-8 w-8 border bg-white text-center text-xs outline-none"
                 type="text"
-                value="1"
+                value={quantity}
                 // min="1"
               />
               <span
-                // onClick={increaseQuantity}
+                onClick={() => increaseQuantity(item)}
                 class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 mr-5 duration-100 hover:bg-blue-500 hover:text-blue-50"
               >
                 {" "}

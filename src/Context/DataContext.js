@@ -6,11 +6,12 @@ export const ApiContext = createContext();
 // const cartFromLocalStorage = JSON.parse(localStorage.getItem("newCart") || "[]");
 
 const DataContext = ({ children }) => {
-  // const [productQuantity, setProductQuantity] = useState(1);
+  const [productQuantity, setProductQuantity] = useState(1);
+  console.log(productQuantity);
   const [cartItems, setCartItems] = useState(
     localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : []
   );
-  console.log(cartItems);
+  // console.log(cartItems);
   const [allItems, setAllItems] = useState([]);
   // console.log(allItems);
   const [filterItems, setFilterItems] = useState("");
@@ -46,6 +47,23 @@ const DataContext = ({ children }) => {
           cartItem._id === item._id ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem
         )
       );
+    }
+  };
+
+  const increaseQuantity = (selectedItem) => {
+    const item = cartItems.find((cartItem) => cartItem._id === selectedItem._id);
+    // setProductQuantity(item.quantity + 1);
+    item.quantity + 1;
+    console.log("object");
+  };
+
+  const decreaseQuantity = (selectedItem) => {
+    const item = cartItems.find((cartItem) => cartItem._id === selectedItem._id);
+    if (item.quantity === 1) {
+      item.quantity = 1;
+    } else {
+      item.quantity - 1;
+      // setProductQuantity(item.quantity - 1);
     }
   };
 
@@ -135,6 +153,9 @@ const DataContext = ({ children }) => {
     // removerFromCart,
     isModalOpen,
     closeModal,
+    increaseQuantity,
+    decreaseQuantity,
+    // productQuantity
   };
   return (
     <div>

@@ -18,7 +18,16 @@ const useStyles = createStyles(() => ({
 const CartDrawer = () => {
   const { classes } = useStyles();
   const [opened, { open, close }] = useDisclosure(false);
-  const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(ApiContext);
+  const {
+    cartItems,
+    addToCart,
+    removeFromCart,
+    clearCart,
+    getCartTotal,
+    productQuantity,
+    increaseQuantity,
+    decreaseQuantity,
+  } = useContext(ApiContext);
 
   // console.log(cart);
   return (
@@ -33,7 +42,14 @@ const CartDrawer = () => {
           <Drawer.Body>
             {cartItems?.map((item) => (
               <>
-                <CartItem item={item} removeFromCart={removeFromCart} getCartTotal={getCartTotal}></CartItem>
+                <CartItem
+                  item={item}
+                  removeFromCart={removeFromCart}
+                  getCartTotal={getCartTotal}
+                  increaseQuantity={increaseQuantity}
+                  decreaseQuantity={decreaseQuantity}
+                  productQuantity={productQuantity}
+                ></CartItem>
               </>
             ))}
           </Drawer.Body>
