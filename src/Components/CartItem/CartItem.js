@@ -7,18 +7,21 @@ import React, { useContext, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import { ApiContext } from "../../Context/DataContext";
 
-const CartItem = ({ item, getCartTotal, removeFromCart, handleIncrement, handleDecrement }) => {
+const CartItem = ({ item, removeFromCart, handleIncrement, handleDecrement }) => {
   const { cover, name, convert_price, _id, quantity } = item;
+
+  const updatedPrice = convert_price * quantity;
 
   return (
     <div>
       <div class="justify-between mb-4 mt-4 rounded-lg bg-white p-3  shadow-md sm:flex sm:justify-start">
-        <img src={cover} alt="image" srcset="" className="h-12 w-12 rounded" />
+        {/* <Image src={cover} alt="Landscape picture" width={800} height={500} /> */}
+        <img src={cover} alt={"image"} srcset="food image" className="h-12 w-12 rounded" />
         <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
           <div class="mt-5 sm:mt-0">
             <h2 class="text-sm font-semibold text-primary">{name}</h2>
             <p class="mt-1 text-sm font-semibold text-error">
-              Total : <span className="text-error">{convert_price}</span> $
+              Total : <span className="text-error">{updatedPrice}</span> $
             </p>
             {/* <p class="mt-1 text-sm font-semibold text-error">
               Total : <span className="text-error">{getCartTotal()}</span> $

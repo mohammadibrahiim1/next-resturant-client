@@ -39,7 +39,7 @@ const CartDrawer = () => {
                     <CartItem
                       item={item}
                       removeFromCart={removeFromCart}
-                      getCartTotal={getCartTotal}
+                      // getCartTotal={getCartTotal}
                       handleDecrement={handleDecrement}
                       handleIncrement={handleIncrement}
                       // removeFromCart={removeFromCart}
@@ -57,7 +57,7 @@ const CartDrawer = () => {
                 SubTotal :{" "}
               </Text>
               <Text c={"#4DB759"} fw={600} fz={"sm"}>
-                $00.00
+                ${getCartTotal()}
               </Text>
             </div>
             <Button color="pink" w="100%" radius={25} size="md" mt={19}>
@@ -75,7 +75,7 @@ const CartDrawer = () => {
           onClick={open}
           //   px={5}
         >
-          <IconShoppingBag height={19} /> $00.00
+          <IconShoppingBag height={19} /> ${getCartTotal()}
         </Button>
       </Group>
     </div>
