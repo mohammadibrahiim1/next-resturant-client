@@ -1,4 +1,4 @@
-import { Button, Drawer, Group, createStyles } from "@mantine/core";
+import { Button, Drawer, Group, Text, createStyles } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconShoppingBag } from "@tabler/icons-react";
 import React, { useContext, useState } from "react";
@@ -18,16 +18,8 @@ const useStyles = createStyles(() => ({
 const CartDrawer = () => {
   const { classes } = useStyles();
   const [opened, { open, close }] = useDisclosure(false);
-  const {
-    cartItems,
-    addToCart,
-    removeFromCart,
-    clearCart,
-    getCartTotal,
-    productQuantity,
-    increaseQuantity,
-    decreaseQuantity,
-  } = useContext(ApiContext);
+  const { cartItems, addToCart, removeFromCart, handleIncrement, handleDecrement, clearCart, getCartTotal } =
+    useContext(ApiContext);
 
   // console.log(cart);
   return (
@@ -40,18 +32,37 @@ const CartDrawer = () => {
             <Drawer.CloseButton />
           </Drawer.Header>
           <Drawer.Body>
-            {cartItems?.map((item) => (
-              <>
-                <CartItem
-                  item={item}
-                  removeFromCart={removeFromCart}
-                  getCartTotal={getCartTotal}
-                  increaseQuantity={increaseQuantity}
-                  decreaseQuantity={decreaseQuantity}
-                  productQuantity={productQuantity}
-                ></CartItem>
-              </>
-            ))}
+            <div>
+              {cartItems.length ? (
+                cartItems?.map((item) => (
+                  <>
+                    <CartItem
+                      item={item}
+                      removeFromCart={removeFromCart}
+                      getCartTotal={getCartTotal}
+                      handleDecrement={handleDecrement}
+                      handleIncrement={handleIncrement}
+                      // removeFromCart={removeFromCart}
+                    ></CartItem>
+                  </>
+                ))
+              ) : (
+                <Text className="text-center" fz={"sm"}>
+                  Good food is always cooking! Go ahead, order some yummy items from the menu.
+                </Text>
+              )}
+            </div>
+            <div className="flex justify-between  mt-[560px] rounded-lg bg-white p-3  shadow-md">
+              <Text c={"#000"} fw={600} fz={"sm"}>
+                SubTotal :{" "}
+              </Text>
+              <Text c={"#4DB759"} fw={600} fz={"sm"}>
+                $00.00
+              </Text>
+            </div>
+            <Button color="pink" w="100%" radius={25} size="md" mt={19}>
+              Proceed to checkout
+            </Button>
           </Drawer.Body>
         </Drawer.Content>
       </Drawer.Root>

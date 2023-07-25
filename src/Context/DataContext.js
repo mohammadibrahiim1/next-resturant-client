@@ -6,8 +6,8 @@ export const ApiContext = createContext();
 // const cartFromLocalStorage = JSON.parse(localStorage.getItem("newCart") || "[]");
 
 const DataContext = ({ children }) => {
-  const [productQuantity, setProductQuantity] = useState(1);
-  console.log(productQuantity);
+  const [quantity, setQuantity] = useState(1);
+  console.log(quantity);
   const [cartItems, setCartItems] = useState(
     localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : []
   );
@@ -28,10 +28,15 @@ const DataContext = ({ children }) => {
     if (isItemInCart) {
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem._id === item._id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
+          cartItem._id === item._id
+            ? {
+                ...cartItem,
+              }
+            : cartItem
         )
       );
     } else {
+      toast.success(`added ${item.name}  successfully`);
       setCartItems([...cartItems, { ...item, quantity: 1 }]);
     }
   };
@@ -44,27 +49,42 @@ const DataContext = ({ children }) => {
     } else {
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem._id === item._id ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem
+          cartItem._id === item._id
+            ? {
+                ...cartItem,
+                //  quantity: cartItem.quantity - 1
+              }
+            : cartItem
         )
       );
     }
   };
 
-  const increaseQuantity = (selectedItem) => {
-    const item = cartItems.find((cartItem) => cartItem._id === selectedItem._id);
-    // setProductQuantity(item.quantity + 1);
-    item.quantity + 1;
-    console.log("object");
+  //  increase cart product quantity
+  const handleIncrement = (id) => {
+    const incrementItem = cartItems.map((cartItem) => {
+      if (cartItem._id === id) {
+        return {
+          ...cartItem,
+          quantity: cartItem.quantity + 1,
+        };
+      }
+      return cartItem;
+    });
+    setCartItems(incrementItem);
   };
 
-  const decreaseQuantity = (selectedItem) => {
-    const item = cartItems.find((cartItem) => cartItem._id === selectedItem._id);
-    if (item.quantity === 1) {
-      item.quantity = 1;
-    } else {
-      item.quantity - 1;
-      // setProductQuantity(item.quantity - 1);
-    }
+  const handleDecrement = (id) => {
+    const decrementItem = cartItems.map((cartItem) => {
+      if (cartItem._id === id && cartItem.quantity > 1) {
+        return {
+          ...cartItem,
+          quantity: cartItem.quantity - 1,
+        };
+      }
+      return cartItem;
+    });
+    setCartItems(decrementItem);
   };
 
   const clearCart = () => {
@@ -85,28 +105,6 @@ const DataContext = ({ children }) => {
       setCartItems(JSON.parse(cartItems));
     }
   }, []);
-  // let newCart = [];
-  // const exists = cart.find((item) => item._id === selectedItem._id);
-  // if (!exists) {
-  //   selectedItem.quantity = 1;
-  //   newCart = [...cart, selectedItem];
-  // } else {
-  //   const rest = cart.filter((item) => item._id !== selectedItem._id);
-  //   exists.quantity = exists.quantity + 1;
-  //   newCart = [...rest, exists];
-  // }
-  // toast.success(`added ${selectedItem.name} successfully `);
-  // setCart(newCart);
-  // // setModalOpen(true);
-  // // toast.success("added successfully");
-  // localStorage.setItem("newCart", JSON.stringify(newCart));
-
-  // const removerFromCart = (_id) => {
-  //   const updatedCart = cart.filter((item) => item._id !== _id);
-  //   localStorage.setItem("newCart", JSON.stringify(updatedCart));
-  //   setCart(updatedCart);
-  //   // toast.error("remove item from cart");
-  // };
 
   const closeModal = () => {
     setModalOpen(false);
@@ -150,12 +148,10 @@ const DataContext = ({ children }) => {
     handleFilterItems,
     filterItems,
     setFilterItems,
-    // removerFromCart,
     isModalOpen,
     closeModal,
-    increaseQuantity,
-    decreaseQuantity,
-    // productQuantity
+    handleDecrement,
+    handleIncrement,
   };
   return (
     <div>

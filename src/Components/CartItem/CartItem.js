@@ -7,24 +7,8 @@ import React, { useContext, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import { ApiContext } from "../../Context/DataContext";
 
-const CartItem = ({ item, getCartTotal, removeFromCart, increaseQuantity, decreaseQuantity }) => {
-  // const [productQuantity, setProductQuantity] = useState(1);
-
-  // const increaseQuantity = () => {
-  //   setProductQuantity(productQuantity + 1);
-  // };
-
-  // const decreaseQuantity = () => {
-  //   if (productQuantity > 1) {
-  //     setProductQuantity(productQuantity - 1);
-  //   }
-  // };
-  // let total = 0;
-  // let quantity = 0;
-  const { cover, name, convert_price, _id, quantity = 0 } = item;
-  // const itemTotalPrice = price * productQuantity;
-
-  // localStorage.setItem("Price", newPrice);
+const CartItem = ({ item, getCartTotal, removeFromCart, handleIncrement, handleDecrement }) => {
+  const { cover, name, convert_price, _id, quantity } = item;
 
   return (
     <div>
@@ -36,16 +20,16 @@ const CartItem = ({ item, getCartTotal, removeFromCart, increaseQuantity, decrea
             <p class="mt-1 text-sm font-semibold text-error">
               Total : <span className="text-error">{convert_price}</span> $
             </p>
-            <p class="mt-1 text-sm font-semibold text-error">
+            {/* <p class="mt-1 text-sm font-semibold text-error">
               Total : <span className="text-error">{getCartTotal()}</span> $
-            </p>
+            </p> */}
           </div>
           <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
             <div class="flex justify-between items-center   border-gray-100">
               {/* <div className="mr-5"> */}
               <span
-                onClick={() => decreaseQuantity(item)}
-                class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                onClick={() => handleDecrement(_id)}
+                class="cursor-pointer rounded-l bg-[#FFA8A8] py-1 px-3.5 duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF"
               >
                 {" "}
                 -{" "}
@@ -58,15 +42,15 @@ const CartItem = ({ item, getCartTotal, removeFromCart, increaseQuantity, decrea
                 // min="1"
               />
               <span
-                onClick={() => increaseQuantity(item)}
-                class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 mr-5 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                onClick={() => handleIncrement(_id)}
+                class="cursor-pointer rounded-r bg-[#FFA8A8] py-1 px-3 mr-5 duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
               >
                 {" "}
                 +{" "}
               </span>
               {/* </div> */}
               <span onClick={() => removeFromCart(item)}>
-                <FaTrash className="text-error cursor-pointer" />
+                <FaTrash className="text-[#FFA8A8] hover:text-[#FF6B6B] transition duration-700 cursor-pointer" />
               </span>
             </div>
           </div>
