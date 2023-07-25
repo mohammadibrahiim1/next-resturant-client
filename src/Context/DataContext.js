@@ -3,12 +3,14 @@ import { toast } from "react-hot-toast";
 // import { useQuery } from "@tanstack/react-query";
 
 export const ApiContext = createContext();
-const cartFromLocalStorage = JSON.parse(localStorage.getItem("newCart") || "[]");
+// const cartFromLocalStorage = JSON.parse(localStorage.getItem("newCart") || "[]");
 
 const DataContext = ({ children }) => {
   // const [productQuantity, setProductQuantity] = useState(1);
-  const [cart, setCart] = useState(cartFromLocalStorage);
-  console.log(cart);
+  const [cartItems, setCartItems] = useState(
+    localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : []
+  );
+  console.log(cartItems);
   const [allItems, setAllItems] = useState([]);
   // console.log(allItems);
   const [filterItems, setFilterItems] = useState("");
@@ -20,30 +22,73 @@ const DataContext = ({ children }) => {
 
   // console.log(filterItems);
 
-  const addToCart = (selectedItem) => {
-    let newCart = [];
-    const exists = cart.find((item) => item._id === selectedItem._id);
-    if (!exists) {
-      selectedItem.quantity = 1;
-      newCart = [...cart, selectedItem];
+  const addToCart = (item) => {
+    const isItemInCart = cartItems.find((cartItem) => cartItem._id === item._id);
+    if (isItemInCart) {
+      setCartItems(
+        cartItems.map((cartItem) =>
+          cartItem._id === item._id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
+        )
+      );
     } else {
-      const rest = cart.filter((item) => item._id !== selectedItem._id);
-      exists.quantity = exists.quantity + 1;
-      newCart = [...rest, exists];
+      setCartItems([...cartItems, { ...item, quantity: 1 }]);
     }
-    toast.success(`added ${selectedItem.name} successfully `);
-    setCart(newCart);
-    // setModalOpen(true);
-    // toast.success("added successfully");
-    localStorage.setItem("newCart", JSON.stringify(newCart));
   };
 
-  const removerFromCart = (_id) => {
-    const updatedCart = cart.filter((item) => item._id !== _id);
-    localStorage.setItem("newCart", JSON.stringify(updatedCart));
-    setCart(updatedCart);
-    // toast.error("remove item from cart");
+  const removeFromCart = (item) => {
+    const isItemInCart = cartItems.find((cartItem) => cartItem._id === item._id);
+
+    if (isItemInCart.quantity === 1) {
+      setCartItems(cartItems.filter((cartItem) => cartItem._id !== item._id));
+    } else {
+      setCartItems(
+        cartItems.map((cartItem) =>
+          cartItem._id === item._id ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem
+        )
+      );
+    }
   };
+
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
+  const getCartTotal = () => {
+    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  useEffect(() => {
+    const cartItems = localStorage.getItem("cartItems");
+    if (cartItems) {
+      setCartItems(JSON.parse(cartItems));
+    }
+  }, []);
+  // let newCart = [];
+  // const exists = cart.find((item) => item._id === selectedItem._id);
+  // if (!exists) {
+  //   selectedItem.quantity = 1;
+  //   newCart = [...cart, selectedItem];
+  // } else {
+  //   const rest = cart.filter((item) => item._id !== selectedItem._id);
+  //   exists.quantity = exists.quantity + 1;
+  //   newCart = [...rest, exists];
+  // }
+  // toast.success(`added ${selectedItem.name} successfully `);
+  // setCart(newCart);
+  // // setModalOpen(true);
+  // // toast.success("added successfully");
+  // localStorage.setItem("newCart", JSON.stringify(newCart));
+
+  // const removerFromCart = (_id) => {
+  //   const updatedCart = cart.filter((item) => item._id !== _id);
+  //   localStorage.setItem("newCart", JSON.stringify(updatedCart));
+  //   setCart(updatedCart);
+  //   // toast.error("remove item from cart");
+  // };
 
   const closeModal = () => {
     setModalOpen(false);
@@ -77,19 +122,19 @@ const DataContext = ({ children }) => {
   };
 
   const info = {
+    cartItems,
     addToCart,
-    // open,
+    removeFromCart,
+    clearCart,
+    getCartTotal,
     allItems,
     categories,
     handleFilterItems,
     filterItems,
     setFilterItems,
-    removerFromCart,
+    // removerFromCart,
     isModalOpen,
     closeModal,
-    cart,
-    // setProductQuantity,
-    // productQuantity,
   };
   return (
     <div>

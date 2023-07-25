@@ -48,8 +48,7 @@ const useStyles = createStyles(() => ({
 }));
 
 const MenuItems = ({ item, setSelectItem }) => {
-  const { addToCart, isModalOpen, closeModal, cart } = useContext(ApiContext);
-  
+  const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(ApiContext);
 
   const { classes } = useStyles();
   const { items, addons } = item;
@@ -102,7 +101,7 @@ const MenuItems = ({ item, setSelectItem }) => {
                         <IconShoppingBag height={16} />
                         <Text weight={700}>add</Text>
                       </Button>
-                      <CartModal cart={cart}></CartModal>
+                      <CartModal cart={cartItems}></CartModal>
                     </div>
                   </div>
                 </Card.Section>

@@ -18,9 +18,9 @@ const useStyles = createStyles(() => ({
 const CartDrawer = () => {
   const { classes } = useStyles();
   const [opened, { open, close }] = useDisclosure(false);
-  const { cart, removerFromCart } = useContext(ApiContext);
+  const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(ApiContext);
 
-  console.log(cart);
+  // console.log(cart);
   return (
     <div>
       <Drawer.Root opened={opened} onClose={close} position="right">
@@ -31,9 +31,9 @@ const CartDrawer = () => {
             <Drawer.CloseButton />
           </Drawer.Header>
           <Drawer.Body>
-            {cart?.map((item) => (
+            {cartItems?.map((item) => (
               <>
-                <CartItem item={item} removerFromCart={removerFromCart}></CartItem>
+                <CartItem item={item} removeFromCart={removeFromCart} getCartTotal={getCartTotal}></CartItem>
               </>
             ))}
           </Drawer.Body>
