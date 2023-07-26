@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 
 import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../../Context/DataContext";
+import CartModal from "../../../Components/CartModal/CartModal";
 
 const useStyles = createStyles((theme) => ({
   // container: {
@@ -70,6 +71,13 @@ const useStyles = createStyles((theme) => ({
   },
 
   btn: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingRight: "9px",
+    paddingLeft: "7px",
+    borderRadius: "11px",
+    cursor: "pointer",
     color: "#FF006B",
     backgroundColor: "#FFFFFF !important",
     border: "1px solid #FFFFFF",
@@ -86,7 +94,7 @@ const useStyles = createStyles((theme) => ({
 
 const OfferItems = ({ params }) => {
   const { classes } = useStyles();
-  const { addToCart } = useContext(ApiContext);
+  const { selectItem, setSelectItem } = useContext(ApiContext);
   // const router = useRouter();
 
   const [data, setData] = useState([]);
@@ -135,10 +143,12 @@ const OfferItems = ({ params }) => {
                           <Text size="lg" color="dark" weight={700}>
                             ${item.flat_price}
                           </Text>
-                          <Button onClick={() => addToCart(item)} className={classes.btn} size="xs" radius="lg">
+                          <label htmlFor="my_modal_6" onClick={() => setSelectItem(item)} className={classes.btn}>
                             <IconShoppingBag height={16} />
-                            <Text weight={700}>add</Text>
-                          </Button>
+                            <Text weight={700} size={"sm"}>
+                              add
+                            </Text>
+                          </label>
                         </div>
                       </div>
                     </Card.Section>
@@ -149,6 +159,10 @@ const OfferItems = ({ params }) => {
           </div>
         </>
       ))}
+
+      <div>
+        <CartModal selectItem={selectItem}></CartModal>
+      </div>
     </div>
   );
 };
