@@ -21,6 +21,23 @@ const DataContext = ({ children }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   // console.log(isModalOpen);
 
+  const [topping, setTopping] = useState("");
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("branch"));
+    if (items) {
+      setTopping(items);
+    }
+  }, []);
+  console.log(topping);
+
+  const onOptionChange = (e) => {
+    setTopping(e.target.value);
+  };
+  useEffect(() => {
+    localStorage.setItem("branch", JSON.stringify(topping));
+  }, [topping]);
+
   // console.log(filterItems);
 
   const addToCart = (item) => {
@@ -165,6 +182,8 @@ const DataContext = ({ children }) => {
     handleDecrement,
     handleIncrement,
     branches,
+    topping,
+    onOptionChange
   };
   return (
     <div>

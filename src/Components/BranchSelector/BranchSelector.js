@@ -4,24 +4,24 @@ import { Group, Menu, Radio, Text } from "@mantine/core";
 import { IconChevronDown } from "@tabler/icons-react";
 
 const BranchSelector = () => {
-  const { branches } = useContext(ApiContext);
-  console.log(branches);
-  const [topping, setTopping] = useState("");
+  const { branches, topping, onOptionChange } = useContext(ApiContext);
+  //   console.log(branches);
+  //   const [topping, setTopping] = useState("");
 
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("branch"));
-    if (items) {
-      setTopping(items);
-    }
-  }, []);
-  console.log(topping);
+  //   useEffect(() => {
+  //     const items = JSON.parse(localStorage.getItem("branch"));
+  //     if (items) {
+  //       setTopping(items);
+  //     }
+  //   }, []);
+  //   console.log(topping);
 
-  const onOptionChange = (e) => {
-    setTopping(e.target.value);
-  };
-  useEffect(() => {
-    localStorage.setItem("branch", JSON.stringify(topping));
-  }, [topping]);
+  //   const onOptionChange = (e) => {
+  //     setTopping(e.target.value);
+  //   };
+  //   useEffect(() => {
+  //     localStorage.setItem("branch", JSON.stringify(topping));
+  //   }, [topping]);
 
   return (
     <div className="App">
