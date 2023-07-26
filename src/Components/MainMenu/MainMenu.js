@@ -9,6 +9,7 @@ import { ApiContext } from "../../Context/DataContext";
 const useStyles = createStyles((theme) => ({
   card: {
     cursor: "pointer",
+    backgroundColor: "#f7f8f8",
   },
   container: {
     display: "grid",
@@ -41,17 +42,13 @@ const MainMenu = () => {
           <>
             <Card
               onClick={() => handleFilterItems(item.slug)}
-              // className="cursor-pointer"
               className={classes.card}
-              // shadow="sm"
-              // padding="xl"
-              // component="a"
               href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
               target="_blank"
             >
-              <Card.Section className="w-32 h-32 flex flex-col items-center text-center gap-4 p-3 c-h-30 rounded-2xl border-b-2 border-transparent transition hover:bg-[#FFEDF4] ">
+              <Card.Section className="w-32 h-32 flex flex-col items-center text-center gap-4 p-3 c-h-30 rounded-2xl border-b-2 border-transparent transition  hover:bg-[#FFEDF4] ">
                 <Image src={item.thumb} height={48} width={75} mx="auto" alt={item.name} />
-                <Text weight={600} w={85} size="xs">
+                <Text weight={600} w={85} size="xs" m="auto">
                   {item.name}
                 </Text>
               </Card.Section>

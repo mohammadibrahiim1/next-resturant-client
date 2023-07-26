@@ -17,11 +17,11 @@ const useStyles = createStyles(() => ({
   card: {
     width: "262px",
     height: "299px",
+    border: "1px solid #f8f8f8",
     "&:hover": {
       boxShadow: "0 8px 16px 0 rgba(0,0,0,0.1), 0 5px 20px 0 rgba(0,0,0,0.1) ",
       transition: "0.3s",
     },
-    // backgroundColor: "#F8F9FA",
   },
 
   card_button: {
@@ -53,13 +53,6 @@ const MenuItems = ({ item, setSelectItem }) => {
   const { classes } = useStyles();
   const { items, addons } = item;
 
-  // const [selectItem, setSelectedItem] = useState(null);
-  // console.log(selectItem);
-
-  // const selectedItem = () => {
-  //   setSelectedItem(items);
-  // };
-
   return (
     <div>
       <section>
@@ -69,13 +62,7 @@ const MenuItems = ({ item, setSelectItem }) => {
         <div className={classes.card_container}>
           {items?.map((item) => (
             <>
-              <Card
-                className={classes.card}
-                // shadow="sm"
-                padding="lg"
-                radius="md"
-                withBorder
-              >
+              <Card className={classes.card} padding="lg" radius="md" shadow="sm">
                 <Card.Section>
                   <Image src={item.cover} height={160} alt={item.name} />
                   <div className="p-3">
@@ -91,13 +78,7 @@ const MenuItems = ({ item, setSelectItem }) => {
                       <Text size="lg" color="dark" weight={700}>
                         ${item.flat_price}
                       </Text>
-                      <Button
-                        // onClick={() => setSelectItem(item)}
-                        onClick={() => addToCart(item)}
-                        className={classes.btn}
-                        size="xs"
-                        radius="lg"
-                      >
+                      <Button onClick={() => addToCart(item)} className={classes.btn} size="xs" radius="lg">
                         <IconShoppingBag height={16} />
                         <Text weight={700}>add</Text>
                       </Button>
