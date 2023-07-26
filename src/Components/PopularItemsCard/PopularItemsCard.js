@@ -9,6 +9,13 @@ const useStyles = createStyles((theme) => ({
     width: "357px",
     height: "124px",
     backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+    // width: "262px",
+    // height: "299px",
+    border: "1px solid #f8f8f8",
+    "&:hover": {
+      boxShadow: "0 8px 16px 0 rgba(0,0,0,0.1), 0 5px 20px 0 rgba(0,0,0,0.1) ",
+      transition: "0.3s",
+    },
     // border: "1px solid gray",
   },
 
@@ -39,6 +46,13 @@ const useStyles = createStyles((theme) => ({
   },
 
   btn: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingRight: "9px",
+    paddingLeft: "7px",
+    borderRadius: "11px",
+    cursor: "pointer",
     color: "#FF006B",
     backgroundColor: "#FFFFFF !important",
     border: "1px solid #FFFFFF",
@@ -53,14 +67,14 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const PopularItemsCard = ({ popularItem }) => {
-  const { addToCart } = useContext(ApiContext);
+const PopularItemsCard = ({ popularItem, setSelectItem }) => {
+  // const { addToCart } = useContext(ApiContext);
   const { classes } = useStyles();
 
   const { flat_price, cover, name, description } = popularItem;
   return (
     <div>
-      <Card withBorder radius="md" p={0} className={classes.card}>
+      <Card shadow="sm" radius="md" p={0} className={classes.card}>
         <Group noWrap spacing={0}>
           <Image src={cover} alt="cover photo" height={124} width={112} />
           <div className={classes.body}>
@@ -75,10 +89,18 @@ const PopularItemsCard = ({ popularItem }) => {
               <Text size="lg" color="dark" weight={700}>
                 ${flat_price}
               </Text>
-              <Button onClick={() => addToCart(popularItem)} className={classes.btn} size="xs" radius="lg">
+              <label
+                htmlFor="my_modal_6"
+                onClick={() => {
+                  setSelectItem(popularItem);
+                }}
+                className={classes.btn}
+              >
                 <IconShoppingBag height={16} />
-                <Text weight={700}>add</Text>
-              </Button>
+                <Text weight={700} size={"sm"}>
+                  add
+                </Text>
+              </label>
             </div>
           </div>
         </Group>

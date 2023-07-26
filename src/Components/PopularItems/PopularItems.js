@@ -1,8 +1,10 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useContext } from "react";
 import PopularItemsCard from "../PopularItemsCard/PopularItemsCard";
 import { Text, createStyles } from "@mantine/core";
+import { ApiContext } from "../../Context/DataContext";
+import CartModal from "../CartModal/CartModal";
 
 const useStyles = createStyles(() => ({
   popular_items_container: {
@@ -25,6 +27,7 @@ const useStyles = createStyles(() => ({
 }));
 
 const PopularItems = () => {
+  const { selectItem, setSelectItem } = useContext(ApiContext);
   const { classes } = useStyles();
   const {
     data: popularItems = [],
@@ -35,7 +38,6 @@ const PopularItems = () => {
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/api/v1/popularItems");
       const data = await res.json();
-      
       return data;
     },
   });
@@ -45,9 +47,12 @@ const PopularItems = () => {
       <div className={classes.popular_items_container}>
         {popularItems.map((popularItem) => (
           <>
-            <PopularItemsCard popularItem={popularItem}></PopularItemsCard>
+            <PopularItemsCard popularItem={popularItem} setSelectItem={setSelectItem}></PopularItemsCard>
           </>
         ))}
+      </div>
+      <div>
+        <CartModal selectItem={selectItem}></CartModal>
       </div>
     </div>
   );

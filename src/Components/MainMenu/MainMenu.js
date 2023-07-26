@@ -30,7 +30,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const MainMenu = () => {
-  const { categories, allItems, handleFilterItems } = useContext(ApiContext);
+  const { categories, allItems, handleFilterItems, selectItem, setSelectItem } = useContext(ApiContext);
   // console.log(categories);
 
   const { classes } = useStyles();
@@ -46,9 +46,12 @@ const MainMenu = () => {
               href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
               target="_blank"
             >
-              <Card.Section className="w-32 h-32 flex flex-col items-center text-center gap-4 p-3 c-h-30 rounded-2xl border-b-2 border-transparent transition  hover:bg-[#FFEDF4] ">
-                <Image src={item.thumb} height={48} width={75} mx="auto" alt={item.name} />
-                <Text weight={600} w={85} size="xs" m="auto">
+              <Card.Section
+                className="w-32 h-32 flex flex-col items-center  gap-4 p-3  rounded-2xl 
+               transition  hover:bg-[#FFEDF4] mx-auto"
+              >
+                <Image src={item.thumb} height={48} width={75} m="auto" alt={item.name} />
+                <Text weight={600} size="xs" align="center" w={90} m={"auto"}>
                   {item.name}
                 </Text>
               </Card.Section>
@@ -58,29 +61,15 @@ const MainMenu = () => {
       </div>
       <section>
         <div>
-          {
-            // allItems ? (
-            allItems?.slice(0, 1)?.map((item) => (
-              <>
-                <MenuItems
-                  item={item}
-                  // setSelectItem={setSelectItem}
-                ></MenuItems>
-              </>
-            ))
-            // )
-            // : (
-            //   <p className="text-danger">No Food Items Found</p>
-            // )
-          }
+          {allItems?.slice(0, 1)?.map((item) => (
+            <>
+              <MenuItems item={item} setSelectItem={setSelectItem}></MenuItems>
+            </>
+          ))}
         </div>
-        {/* <div>
-          {
-            <CartModal
-            //  selectItem={selectItem} setSelectItem={setSelectItem}
-            ></CartModal>
-          }
-        </div> */}
+        <div>
+          <CartModal selectItem={selectItem} setSelectItem={setSelectItem}></CartModal>
+        </div>
       </section>
     </div>
   );

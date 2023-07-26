@@ -17,9 +17,8 @@ const DataContext = ({ children }) => {
   const [filterItems, setFilterItems] = useState("");
   // console.log(filterItems);
   const [categories, setCategories] = useState([]);
-
-  const [isModalOpen, setModalOpen] = useState(false);
-  // console.log(isModalOpen);
+  const [selectItem, setSelectItem] = useState(null);
+  console.log(selectItem);
 
   const [topping, setTopping] = useState("");
 
@@ -29,7 +28,7 @@ const DataContext = ({ children }) => {
       setTopping(items);
     }
   }, []);
-  console.log(topping);
+  // console.log(topping);
 
   const onOptionChange = (e) => {
     setTopping(e.target.value);
@@ -155,7 +154,7 @@ const DataContext = ({ children }) => {
   };
 
   const [branches, setBranches] = useState([]);
-  console.log(branches);
+  // console.log(branches);
 
   useEffect(() => {
     fetch("http://localhost:5000/api/v1/branches")
@@ -165,7 +164,7 @@ const DataContext = ({ children }) => {
         setBranches(data);
       });
   }, []);
-
+  // const [showModal, setShowModal] = React.useState(false);
   const info = {
     cartItems,
     addToCart,
@@ -177,13 +176,15 @@ const DataContext = ({ children }) => {
     handleFilterItems,
     filterItems,
     setFilterItems,
-    isModalOpen,
+    // isModalOpen,
     closeModal,
     handleDecrement,
     handleIncrement,
     branches,
     topping,
-    onOptionChange
+    onOptionChange,
+    setSelectItem,
+    selectItem,
   };
   return (
     <div>

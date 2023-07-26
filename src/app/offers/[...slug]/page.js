@@ -53,6 +53,7 @@ const useStyles = createStyles((theme) => ({
   card: {
     width: "262px",
     height: "299px",
+    border: "1px solid #f8f8f8",
     "&:hover": {
       boxShadow: "0 8px 16px 0 rgba(0,0,0,0.1), 0 5px 20px 0 rgba(0,0,0,0.1) ",
       transition: "0.3s",
@@ -89,7 +90,7 @@ const OfferItems = ({ params }) => {
   // const router = useRouter();
 
   const [data, setData] = useState([]);
-  // console.log(useRouter());
+
   const slug = params.slug[0];
 
   const handleOffer = async () => {
@@ -111,27 +112,14 @@ const OfferItems = ({ params }) => {
       {/* new offer page */}
       {data?.map((offer) => (
         <>
-          <Text
-            // mt={46}
-            mb={25}
-            color="#FF006B"
-            tt="capitalize"
-            fz="28px"
-            fw={700}
-          >
+          <Text mb={25} color="#FF006B" tt="capitalize" fz="28px" fw={700}>
             {offer.name}
           </Text>
           <div>
             <div className={classes.card_container}>
               {offer.items.map((item) => (
                 <>
-                  <Card
-                    className={classes.card}
-                    // shadow="sm"
-                    padding="lg"
-                    radius="md"
-                    withBorder
-                  >
+                  <Card className={classes.card} shadow="sm" padding="lg" radius="md">
                     <Card.Section>
                       <Image src={item.cover} height={160} alt={item.name} />
                       <div className="p-3">
@@ -158,15 +146,6 @@ const OfferItems = ({ params }) => {
                 </>
               ))}
             </div>
-            {/* <img src={offer.image} alt="" srcset="" /> */}
-            {/* {offer.items.length} */}
-            {/* <Image
-              src={offer.image}
-              alt=""
-              srcset=""
-              width="120"
-              height="120"
-            /> */}
           </div>
         </>
       ))}

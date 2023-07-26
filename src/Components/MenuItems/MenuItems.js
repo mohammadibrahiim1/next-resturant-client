@@ -1,6 +1,6 @@
 import { Badge, Button, Card, Container, Group, Image, Modal, Text, createStyles } from "@mantine/core";
 import { IconShoppingBag } from "@tabler/icons-react";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../Context/DataContext";
 import { useDisclosure } from "@mantine/hooks";
 import CartModal from "../CartModal/CartModal";
@@ -14,6 +14,7 @@ const useStyles = createStyles(() => ({
     alignItems: "center",
     gap: "14px",
   },
+
   card: {
     width: "262px",
     height: "299px",
@@ -24,7 +25,7 @@ const useStyles = createStyles(() => ({
     },
   },
 
-  card_button: {
+  card_footer_container: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -33,6 +34,13 @@ const useStyles = createStyles(() => ({
   },
 
   btn: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingRight: "9px",
+    paddingLeft: "7px",
+    borderRadius: "11px",
+    cursor: "pointer",
     color: "#FF006B",
     backgroundColor: "#FFFFFF !important",
     border: "1px solid #FFFFFF",
@@ -48,10 +56,8 @@ const useStyles = createStyles(() => ({
 }));
 
 const MenuItems = ({ item, setSelectItem }) => {
-  const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(ApiContext);
-
   const { classes } = useStyles();
-  const { items, addons } = item;
+  const { items, addons, _id } = item;
 
   return (
     <div>
@@ -74,15 +80,16 @@ const MenuItems = ({ item, setSelectItem }) => {
                       {item.description.slice(0, 70)}...
                     </Text>
 
-                    <div className={classes.card_button}>
+                    <div className={classes.card_footer_container}>
                       <Text size="lg" color="dark" weight={700}>
                         ${item.flat_price}
                       </Text>
-                      <Button onClick={() => addToCart(item)} className={classes.btn} size="xs" radius="lg">
+                      <label htmlFor="my_modal_6" onClick={() => setSelectItem(item)} className={classes.btn}>
                         <IconShoppingBag height={16} />
-                        <Text weight={700}>add</Text>
-                      </Button>
-                      <CartModal cart={cartItems}></CartModal>
+                        <Text weight={700} size={"sm"}>
+                          add
+                        </Text>
+                      </label>
                     </div>
                   </div>
                 </Card.Section>
