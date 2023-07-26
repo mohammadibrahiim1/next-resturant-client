@@ -9,7 +9,7 @@ const DataContext = ({ children }) => {
   // const [quantity, setQuantity] = useState(1);
   // console.log(quantity);
   const [cartItems, setCartItems] = useState(
-    localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : "[]"
+    localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : []
   );
   // console.log(cartItems);
   const [allItems, setAllItems] = useState([]);
