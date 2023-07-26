@@ -5,6 +5,7 @@ import React, { useContext, useState } from "react";
 import { ApiContext } from "../../Context/DataContext";
 import CartItem from "../../Components/CartItem/CartItem";
 import { FaTrash } from "react-icons/fa";
+import Link from "next/link";
 
 const useStyles = createStyles(() => ({
   cart_button: {
@@ -60,9 +61,11 @@ const CartDrawer = () => {
                 ${getCartTotal()}
               </Text>
             </div>
-            <Button color="pink" w="100%" radius={25} size="md" mt={19}>
-              Proceed to checkout
-            </Button>
+            <Link href="/checkout">
+              <Button color="pink" w="100%" radius={25} size="md" mt={19}>
+                Proceed to checkout
+              </Button>
+            </Link>
           </Drawer.Body>
         </Drawer.Content>
       </Drawer.Root>
