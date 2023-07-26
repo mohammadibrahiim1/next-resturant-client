@@ -1,22 +1,12 @@
 import { useState } from "react";
-import {
-  createStyles,
-  Header,
-  Container,
-  Group,
-  Burger,
-  Paper,
-  Transition,
-  rem,
-  Image,
-  Input,
-} from "@mantine/core";
+import { createStyles, Header, Container, Group, Burger, Paper, Transition, rem, Image, Input } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import Link from "next/link";
 import { IconSearch } from "@tabler/icons-react";
 import ToggleMenu from "../../Components/ToggleMenu/ToggleMenu";
 import CartDrawer from "../CartDrawer/CartDrawer";
 import UserProfile from "../UserProfile/UserProfile";
+import BranchSelector from "../../Components/BranchSelector/BranchSelector";
 
 const HEADER_HEIGHT = rem(80);
 
@@ -125,8 +115,7 @@ const HeaderMenu = () => {
       className={cx(classes.link, {
         [classes.linkActive]: active === link.link,
       })}
-      onClick={(event) => {
-      
+      onClick={() => {
         setActive(link.link);
         close();
       }}
@@ -139,12 +128,11 @@ const HeaderMenu = () => {
     <Header height={HEADER_HEIGHT} className={classes.root}>
       <Container size="lg" className={classes.header}>
         <Link href="/" className={classes.logo}>
-          <Image
-            src="https://i.ibb.co/Y048Z9J/menu-logo.png"
-            alt=""
-            srcset=""
-          />
+          <Image src="https://i.ibb.co/Y048Z9J/menu-logo.png" alt="" srcset="" />
         </Link>
+        <div>
+          <BranchSelector></BranchSelector>
+        </div>
         <Group spacing={2} className={classes.links}>
           {items}
         </Group>
@@ -171,19 +159,13 @@ const HeaderMenu = () => {
           </Group>
           <Group>
             <CartDrawer></CartDrawer>
-            {/* <ToggleMenu></ToggleMenu> */}
           </Group>
           <Group>
             <UserProfile></UserProfile>
           </Group>
         </div>
 
-        <Burger
-          opened={opened}
-          onClick={toggle}
-          className={classes.burger}
-          size="sm"
-        />
+        <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
 
         <Transition transition="pop-top-right" duration={200} mounted={opened}>
           {(styles) => (

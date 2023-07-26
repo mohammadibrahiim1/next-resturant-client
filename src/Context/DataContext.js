@@ -6,10 +6,10 @@ export const ApiContext = createContext();
 // const cartFromLocalStorage = JSON.parse(localStorage.getItem("newCart") || "[]");
 
 const DataContext = ({ children }) => {
-  const [quantity, setQuantity] = useState(1);
-  console.log(quantity);
+  // const [quantity, setQuantity] = useState(1);
+  // console.log(quantity);
   const [cartItems, setCartItems] = useState(
-    localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : []
+    localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : "[]"
   );
   // console.log(cartItems);
   const [allItems, setAllItems] = useState([]);
@@ -137,6 +137,18 @@ const DataContext = ({ children }) => {
       });
   };
 
+  const [branches, setBranches] = useState([]);
+  console.log(branches);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/v1/branches")
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        setBranches(data);
+      });
+  }, []);
+
   const info = {
     cartItems,
     addToCart,
@@ -152,6 +164,7 @@ const DataContext = ({ children }) => {
     closeModal,
     handleDecrement,
     handleIncrement,
+    branches,
   };
   return (
     <div>
