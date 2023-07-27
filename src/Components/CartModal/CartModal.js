@@ -17,11 +17,18 @@ const useStyles = createStyles((theme) => ({
   body: {
     padding: theme.spacing.md,
   },
+  addon_container: {
+    display: "grid",
+    gridTemplateColumns: "repeat(3,1fr)",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: "5px",
+  },
 }));
 
 const CartModal = ({ selectItem, count, setCount, handleDecrement, handleIncrement }) => {
   const { classes } = useStyles();
-  const { name, cover, description, convert_price, itemAttributes, extras, _id } = selectItem;
+  const { name, cover, description, convert_price, itemAttributes, extras, addons } = selectItem;
   console.log(selectItem);
 
   const updatedPrice = convert_price * count;
@@ -29,7 +36,7 @@ const CartModal = ({ selectItem, count, setCount, handleDecrement, handleIncreme
     <>
       <input type="checkbox" id="my_modal_6" className="modal-toggle" />
       <div className="modal">
-        <div className="w-[847px] modal-box">
+        <div className="w-[650px] p-2 mx-auto bg-[#FFFFFF]">
           {/* <Card radius="md" p={0} className={classes.card}>
             <Group noWrap spacing={0}>
               <img alt="foot-image" src={selectItem?.cover} className="h-20 w-20 rounded" />
@@ -129,6 +136,79 @@ const CartModal = ({ selectItem, count, setCount, handleDecrement, handleIncreme
                       ))}
                     </div>
                   </>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div>
+                {addons ? (
+                  <div>
+                    <Text size={"xs"} fw={"bold"} py={3}>
+                      Addons
+                    </Text>
+                    <div className={classes.addon_container}>
+                      {addons?.map((addon) => (
+                        <>
+                          <div class=" mb-4 mt-4 rounded-lg bg-white  sm:flex sm:justify-start border h-[71px] ">
+                            <Image alt="food-img" src={addon.cover} width={"95px"} height={"69px"} radius={"xs"} />
+
+                            <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
+                              <div class="mt-5 sm:mt-0">
+                                <Text class="text-xs font-semibold text-secondary">{addon.addon_item_name}</Text>
+                                {/* <Text class="text-xs font-semibold text-dark-50">{description}</Text> */}
+                                <div className="mt-2 pe-1 flex flex-col justify-between">
+                                  <div class="flex justify-between items-center border-gray-100 w-16">
+                                    {/* <div className="mr-5"> */}
+                                    <span
+                                      onClick={handleDecrement}
+                                      class="cursor-pointer rounded-l bg-[#FFA8A8] py-0 px-3 duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
+                                    >
+                                      {" "}
+                                      -{" "}
+                                    </span>
+
+                                    <input
+                                      class="h-6 w-8 border  bg-white text-center text-xs outline-none"
+                                      type="text"
+                                      value={count}
+                                    />
+                                    <span
+                                      onClick={handleIncrement}
+                                      class="cursor-pointer rounded-r bg-[#FFA8A8] py-0 px-3 duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
+                                    >
+                                      {" "}
+                                      +{" "}
+                                    </span>
+                                    {/* </div> */}
+                                    <span
+                                    // onClick={() => removeFromCart(item)}
+                                    ></span>
+                                  </div>
+                                  <Text class="text-normal font-bold text-[#4DB759]">
+                                    ${addon.addon_item_flat_price}
+                                  </Text>
+                                </div>
+                              </div>
+                              <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6"></div>
+                            </div>
+                          </div>
+                          {/* <div className="border flex items-center gap-2 rounded-md ps-1 pe-1 w-[109px] ">
+                            <input type="checkbox" />
+                            <Checkbox color="pink" size="xs" />
+                            <div className="py-1">
+                              <Text size={"xs"} fw={"bold"}>
+                                {addon.addon_item_name}
+                              </Text>
+
+                              <Text size={"sm"} fw={"bold"} c={"#6EC478"}>
+                                ${addon.addon_item_flat_price}
+                              </Text>
+                            </div>
+                          </div> */}
+                        </>
+                      ))}
+                    </div>
+                  </div>
                 ) : (
                   ""
                 )}
