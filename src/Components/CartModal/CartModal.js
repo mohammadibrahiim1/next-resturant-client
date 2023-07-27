@@ -221,7 +221,7 @@ const CartModal = ({ selectItem, count, setCount, handleDecrement, handleIncreme
             <div className="modal-action">
               <label
                 htmlFor="my_modal_6"
-                className=" btn rounded-3xl bg-[#FF6B6B] text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#FF6B6B] hover:border-[#FF6B6B] "
+                className=" border rounded-3xl p-1 duration-700 cursor-pointer bg-[#FFFFFF] text-[#FF6B6B] hover:bg-[#FF6B6B] hover:text-[#FFFFFF] border-[#FF6B6B] hover:border-[#FF6B6B] "
               >
                 <MdClose />
               </label>
