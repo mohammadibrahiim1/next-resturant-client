@@ -37,17 +37,17 @@ const CartModal = ({ selectItem, count, setCount, handleDecrement, handleIncreme
       <input type="checkbox" id="my_modal_6" className="modal-toggle" />
       <div className="modal">
         <div className="w-[650px] p-5 bg-[#FFFFFF] rounded-lg">
-          <div className="flex justify-between items-start gap-2">
+          <div className="flex justify-between items-start  gap-2">
             <div>
               {selectItem && selectItem ? (
                 <>
                   {" "}
-                  <div class="justify-between mb-4 rounded-lg bg-white    sm:flex sm:justify-start">
+                  <div class="justify-between mb-4 rounded-lg bg-white shadow sm:flex sm:justify-start p-1">
                     <Image alt="food-img" src={cover} width={"95px"} height={"85px"} radius={"md"} />
 
                     <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                       <div class="mt-5 sm:mt-0">
-                        <Text class="text-sm font-semibold text-secondary">{name}</Text>
+                        <Text class="text-sm font-semibold text-[#FF6B6B]">{name}</Text>
                         <Text class="text-xs font-semibold text-dark-50">{description}</Text>
                         <div className="mt-2 pe-1 flex justify-between">
                           <div class="flex justify-between items-center border-gray-100">
@@ -108,10 +108,10 @@ const CartModal = ({ selectItem, count, setCount, handleDecrement, handleIncreme
                         <Text size={"xs"} fw={"bold"} py={3}>
                           Extras
                         </Text>
-                        <div className="flex items-center gap-2 ">
+                        <div className="flex items-center gap-2">
                           {extras?.map((extra) => (
                             <>
-                              <div className="border flex items-center gap-2 rounded-md ps-1 pe-1 w-[109px] ">
+                              <div className="border flex items-center gap-2 shadow p-1  rounded-md  w-[109px] ">
                                 {/* <input type="checkbox" /> */}
                                 <Checkbox color="pink" size="xs" />
                                 <div className="py-1">
@@ -141,7 +141,7 @@ const CartModal = ({ selectItem, count, setCount, handleDecrement, handleIncreme
                         <div className={classes.addon_container}>
                           {addons?.map((addon) => (
                             <>
-                              <div class=" mb-4 mt-1 rounded-lg bg-white  sm:flex sm:justify-start border h-[71px] ">
+                              <div class=" shadow p-1  mb-4 mt-1 rounded-lg bg-white  sm:flex sm:justify-start border h-[79px] ">
                                 <Image alt="food-img" src={addon.cover} width={"95px"} height={"69px"} radius={"xs"} />
 
                                 <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
