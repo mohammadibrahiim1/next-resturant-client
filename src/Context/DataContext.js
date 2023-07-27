@@ -17,7 +17,7 @@ const DataContext = ({ children }) => {
   const [filterItems, setFilterItems] = useState("");
   // console.log(filterItems);
   const [categories, setCategories] = useState([]);
-  const [selectItem, setSelectItem] = useState(null);
+  const [selectItem, setSelectItem] = useState({});
   console.log(selectItem);
 
   const [topping, setTopping] = useState("");

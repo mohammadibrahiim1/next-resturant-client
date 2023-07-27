@@ -30,7 +30,8 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const MainMenu = () => {
-  const { categories, allItems, handleFilterItems, selectItem, setSelectItem } = useContext(ApiContext);
+  
+  const { categories, allItems, handleFilterItems,selectItem, setSelectItem } = useContext(ApiContext);
   // console.log(categories);
 
   const { classes } = useStyles();
