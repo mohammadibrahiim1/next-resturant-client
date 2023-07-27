@@ -88,10 +88,10 @@ const DataContext = ({ children }) => {
     //   }
     //   return cartItem;
     // });
-    setCount(count + 1);
+    setCount((count) => count + 1);
   };
 
-  const handleDecrement = (id) => {
+  const handleDecrement = () => {
     // const decrementItem = cartItems.map((cartItem) => {
     //   if (cartItem._id === id && cartItem.quantity > 1) {
     //     return {
@@ -101,7 +101,10 @@ const DataContext = ({ children }) => {
     //   }
     //   return cartItem;
     // });
-    setCount(count - 1);
+    if (count > 1) {
+      setCount((count) => count - 1);
+    }
+    // setCount(count - 1);
   };
 
   const clearCart = () => {

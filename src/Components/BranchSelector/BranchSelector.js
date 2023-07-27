@@ -5,23 +5,6 @@ import { IconChevronDown } from "@tabler/icons-react";
 
 const BranchSelector = () => {
   const { branches, topping, onOptionChange } = useContext(ApiContext);
-  //   console.log(branches);
-  //   const [topping, setTopping] = useState("");
-
-  //   useEffect(() => {
-  //     const items = JSON.parse(localStorage.getItem("branch"));
-  //     if (items) {
-  //       setTopping(items);
-  //     }
-  //   }, []);
-  //   console.log(topping);
-
-  //   const onOptionChange = (e) => {
-  //     setTopping(e.target.value);
-  //   };
-  //   useEffect(() => {
-  //     localStorage.setItem("branch", JSON.stringify(topping));
-  //   }, [topping]);
 
   return (
     <div className="App">
@@ -46,7 +29,7 @@ const BranchSelector = () => {
         <Menu.Dropdown>
           <Menu.Label>Select Branch</Menu.Label>
           <Menu.Item>
-            {branches.map((branch, i) => (
+            {branches.map((branch) => (
               <>
                 <Radio.Group>
                   <Group mt="xs">
