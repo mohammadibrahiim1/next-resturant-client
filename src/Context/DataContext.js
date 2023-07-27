@@ -18,6 +18,7 @@ const DataContext = ({ children }) => {
   // console.log(filterItems);
   const [categories, setCategories] = useState([]);
   const [selectItem, setSelectItem] = useState({});
+  const [count, setCount] = useState(1);
   console.log(selectItem);
 
   const [topping, setTopping] = useState("");
@@ -60,7 +61,7 @@ const DataContext = ({ children }) => {
   const removeFromCart = (item) => {
     const isItemInCart = cartItems.find((cartItem) => cartItem._id === item._id);
 
-    if (isItemInCart.quantity === 1) {
+    if (isItemInCart) {
       setCartItems(cartItems.filter((cartItem) => cartItem._id !== item._id));
     } else {
       setCartItems(
@@ -77,30 +78,30 @@ const DataContext = ({ children }) => {
   };
 
   //  increase cart product quantity
-  const handleIncrement = (id) => {
-    const incrementItem = cartItems.map((cartItem) => {
-      if (cartItem._id === id) {
-        return {
-          ...cartItem,
-          quantity: cartItem.quantity + 1,
-        };
-      }
-      return cartItem;
-    });
-    setCartItems(incrementItem);
+  const handleIncrement = () => {
+    // const incrementItem = cartItems.map((cartItem) => {
+    //   if (cartItem._id === id) {
+    //     return {
+    //       ...cartItem,
+    //       quantity: cartItem.quantity + 1,
+    //     };
+    //   }
+    //   return cartItem;
+    // });
+    setCount(count + 1);
   };
 
   const handleDecrement = (id) => {
-    const decrementItem = cartItems.map((cartItem) => {
-      if (cartItem._id === id && cartItem.quantity > 1) {
-        return {
-          ...cartItem,
-          quantity: cartItem.quantity - 1,
-        };
-      }
-      return cartItem;
-    });
-    setCartItems(decrementItem);
+    // const decrementItem = cartItems.map((cartItem) => {
+    //   if (cartItem._id === id && cartItem.quantity > 1) {
+    //     return {
+    //       ...cartItem,
+    //       quantity: cartItem.quantity - 1,
+    //     };
+    //   }
+    //   return cartItem;
+    // });
+    setCount(count - 1);
   };
 
   const clearCart = () => {
@@ -185,6 +186,8 @@ const DataContext = ({ children }) => {
     onOptionChange,
     setSelectItem,
     selectItem,
+    count,
+    setCount,
   };
   return (
     <div>

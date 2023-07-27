@@ -30,8 +30,17 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const MainMenu = () => {
-  
-  const { categories, allItems, handleFilterItems,selectItem, setSelectItem } = useContext(ApiContext);
+  const {
+    categories,
+    allItems,
+    handleFilterItems,
+    selectItem,
+    setSelectItem,
+    count,
+    setCount,
+    handleDecrement,
+    handleIncrement,
+  } = useContext(ApiContext);
   // console.log(categories);
 
   const { classes } = useStyles();
@@ -69,7 +78,14 @@ const MainMenu = () => {
           ))}
         </div>
         <div>
-          <CartModal selectItem={selectItem} setSelectItem={setSelectItem}></CartModal>
+          <CartModal
+            selectItem={selectItem}
+            setSelectItem={setSelectItem}
+            count={count}
+            setCount={setCount}
+            handleDecrement={handleDecrement}
+            handleIncrement={handleIncrement}
+          ></CartModal>
         </div>
       </section>
     </div>

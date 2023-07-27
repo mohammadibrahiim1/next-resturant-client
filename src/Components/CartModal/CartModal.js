@@ -19,9 +19,9 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const CartModal = ({ selectItem }) => {
+const CartModal = ({ selectItem, count, setCount, handleDecrement, handleIncrement }) => {
   const { classes } = useStyles();
-  const { name, cover, description, convert_price } = selectItem;
+  const { name, cover, description, convert_price, quantity, _id } = selectItem;
   console.log(selectItem);
   return (
     <>
@@ -43,14 +43,45 @@ const CartModal = ({ selectItem }) => {
             <>
               {" "}
               <div class="justify-between mb-4 mt-4 rounded-lg bg-white p-3  shadow-md sm:flex sm:justify-start">
-                {/* <Image src={cover} alt="Landscape picture" width={800} height={500} /> */}
-                <Image alt="food-img" src={cover} width={"82px"} height={"72px"} radius={"md"} />
-                {/* <img src={cover} alt={"image"} srcset="food image" className="h-[72px] w-[72px] rounded" /> */}
+                <Image alt="food-img" src={cover} width={"95px"} height={"85px"} radius={"md"} />
+
                 <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                   <div class="mt-5 sm:mt-0">
                     <Text class="text-sm font-semibold text-secondary">{name}</Text>
                     <Text class="text-xs font-semibold text-dark-50">{description}</Text>
-                    <Text class="text-normal font-bold text-[#4DB759]">${convert_price}</Text>
+                    <div className="mt-2 pe-6 flex justify-between">
+                      <div class="flex justify-between items-center border-gray-100">
+                        {/* <div className="mr-5"> */}
+                        <span
+                          onClick={handleIncrement}
+                          class="cursor-pointer rounded-l bg-[#FFA8A8] py-0 px-3 duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
+                        >
+                          {" "}
+                          -{" "}
+                        </span>
+
+                        <input
+                          class="h-6 w-8 border  bg-white text-center text-xs outline-none"
+                          type="text"
+                          value={count}
+                        />
+                        <span
+                          onClick={handleDecrement}
+                          class="cursor-pointer rounded-r bg-[#FFA8A8] py-0 px-3 mr-5 duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
+                        >
+                          {" "}
+                          +{" "}
+                        </span>
+                        {/* </div> */}
+                        <span
+                        // onClick={() => removeFromCart(item)}
+                        >
+                          {/* <FaTrash className="text-[#FFA8A8] hover:text-[#FF6B6B] transition duration-700 cursor-pointer" /> */}
+                        </span>
+                      </div>
+                      <Text class="text-normal font-bold text-[#4DB759]">${convert_price}</Text>
+                    </div>
+
                     {/* <p class="mt-1 text-sm font-semibold text-error">
                       Total : <span className="text-error">{updatedPrice}</span> $
                     </p> */}
@@ -58,38 +89,7 @@ const CartModal = ({ selectItem }) => {
             Total : <span className="text-error">{getCartTotal()}</span> $
           </p> */}
                   </div>
-                  <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
-                    <div class="flex justify-between items-center   border-gray-100">
-                      {/* <div className="mr-5"> */}
-                      <span
-                        // onClick={() => handleDecrement(_id)}
-                        class="cursor-pointer rounded-l bg-[#FFA8A8] py-1 px-3.5 duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF"
-                      >
-                        {" "}
-                        -{" "}
-                      </span>
-
-                      <input
-                        class="h-8 w-8 border bg-white text-center text-xs outline-none"
-                        type="text"
-                        // value={quantity}
-                        // min="1"
-                      />
-                      <span
-                        // onClick={() => handleIncrement(_id)}
-                        class="cursor-pointer rounded-r bg-[#FFA8A8] py-1 px-3 mr-5 duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
-                      >
-                        {" "}
-                        +{" "}
-                      </span>
-                      {/* </div> */}
-                      <span
-                      // onClick={() => removeFromCart(item)}
-                      >
-                        <FaTrash className="text-[#FFA8A8] hover:text-[#FF6B6B] transition duration-700 cursor-pointer" />
-                      </span>
-                    </div>
-                  </div>
+                  <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6"></div>
                 </div>
               </div>
             </>
