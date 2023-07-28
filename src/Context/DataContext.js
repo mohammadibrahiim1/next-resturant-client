@@ -18,8 +18,8 @@ const DataContext = ({ children }) => {
   // console.log(filterItems);
   const [categories, setCategories] = useState([]);
   const [selectItem, setSelectItem] = useState({});
-  const [count, setCount] = useState(1);
-  console.log(selectItem);
+
+  // console.log(selectItem);
 
   const [topping, setTopping] = useState("");
 
@@ -77,6 +77,19 @@ const DataContext = ({ children }) => {
     }
   };
 
+  // modal food item quantity count
+
+  const [foodItemCount, setFoodItemCount] = useState(1);
+
+  const incrementFoodItem = () => {
+    setFoodItemCount((foodItemCount) => foodItemCount + 1);
+  };
+  const decrementFoodItem = () => {
+    if (foodItemCount > 1) {
+      setFoodItemCount((foodItemCount) => foodItemCount - 1);
+    }
+  };
+
   //  increase cart product quantity
   const handleIncrement = () => {
     // const incrementItem = cartItems.map((cartItem) => {
@@ -106,6 +119,10 @@ const DataContext = ({ children }) => {
     }
     // setCount(count - 1);
   };
+
+  // handle addons quantity and price
+  const [addonsQuantity, setAddonsQuantity] = useState(1);
+  // console.log(addonsQuantity);
 
   const clearCart = () => {
     setCartItems([]);
@@ -189,8 +206,15 @@ const DataContext = ({ children }) => {
     onOptionChange,
     setSelectItem,
     selectItem,
-    count,
-    setCount,
+    // count,
+    // setCount,
+
+    setAddonsQuantity,
+    addonsQuantity,
+
+    foodItemCount,
+    incrementFoodItem,
+    decrementFoodItem,
   };
   return (
     <div>

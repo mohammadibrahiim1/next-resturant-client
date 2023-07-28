@@ -1,5 +1,17 @@
 // import { useDisclosure } from "@mantine/hooks";
-import { Group, Card, Image, Text, Avatar, createStyles, Checkbox, Textarea, Button, Drawer } from "@mantine/core";
+import {
+  Group,
+  Card,
+  Image,
+  Text,
+  Avatar,
+  createStyles,
+  Checkbox,
+  Textarea,
+  Button,
+  Drawer,
+  Radio,
+} from "@mantine/core";
 import { MdClose } from "react-icons/md";
 // import { useContext } from "react";
 // import { ApiContext } from "../../Context/DataContext";
@@ -26,12 +38,53 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const CartModal = ({ selectItem, count, setCount, handleDecrement, handleIncrement }) => {
+const CartModal = ({
+  selectItem,
+  count,
+  foodItemCount,
+  handleDecrement,
+  handleIncrement,
+  addonsQuantity,
+  incrementFoodItem,
+  decrementFoodItem,
+  setAddonsQuantity,
+}) => {
   const { classes } = useStyles();
   const { name, cover, description, convert_price, itemAttributes, extras, addons } = selectItem;
-  console.log(selectItem);
+  // console.log(selectItem);
 
-  const updatedPrice = convert_price * count;
+  const handleAddonsDecrement = (id) => {
+    const decrementItem = addons.filter((addon) => {
+      if (addon.id === id && addon.quantity > 1) {
+        return {
+          ...addon,
+          quantity: 1,
+          quantity: addon.quantity - 1,
+        };
+      }
+      // return addon;
+    });
+    // if (addonsQuantity > 1) {
+    setAddonsQuantity(decrementItem);
+    // }
+    // setCount(count - 1);
+  };
+
+  const handleAddonsIncrement = (id) => {
+    const incrementItem = addons.map((addon) => {
+      if (addon.id === id) {
+        return {
+          ...addon,
+          quantity: 1,
+          quantity: addon.quantity + 1,
+        };
+      }
+      // return addon;
+    });
+    setAddonsQuantity(incrementItem);
+  };
+
+  const updatedPrice = convert_price * foodItemCount;
   return (
     <>
       <input type="checkbox" id="my_modal_6" className="modal-toggle" />
@@ -53,7 +106,7 @@ const CartModal = ({ selectItem, count, setCount, handleDecrement, handleIncreme
                           <div class="flex justify-between items-center border-gray-100">
                             {/* <div className="mr-5"> */}
                             <span
-                              onClick={handleDecrement}
+                              onClick={decrementFoodItem}
                               class="cursor-pointer rounded-l bg-[#FFA8A8] py-0 px-3 duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
                             >
                               {" "}
@@ -63,10 +116,10 @@ const CartModal = ({ selectItem, count, setCount, handleDecrement, handleIncreme
                             <input
                               class="h-6 w-8 border  bg-white text-center text-xs outline-none"
                               type="text"
-                              value={count}
+                              value={foodItemCount}
                             />
                             <span
-                              onClick={handleIncrement}
+                              onClick={incrementFoodItem}
                               class="cursor-pointer rounded-r bg-[#FFA8A8] py-0 px-3  duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
                             >
                               {" "}
@@ -94,16 +147,29 @@ const CartModal = ({ selectItem, count, setCount, handleDecrement, handleIncreme
                   </div>
                   <div></div>
                   {/* <div>
-                {itemAttributes?.map((itemAttribute) => (
-                  <>
-                    <Text size={"sm"} fw={"bold"}>
-                      {itemAttribute.name}
-                    </Text>
-                  </>
-                ))}
-              </div> */}
+                    {itemAttributes?.map((itemAttribute) => (
+                      <>
+                        <Text size={"sm"} fw={"bold"}>
+                          {itemAttribute.name}
+                        </Text>
+                        <Radio.Group
+                          name="favoriteFramework"
+                          label="Select your favorite framework/library"
+                          description="This is anonymous"
+                          withAsterisk
+                        >
+                          <Group mt="xs">
+                            <Radio value="react" label="React" />
+                            <Radio value="svelte" label="Svelte" />
+                            <Radio value="ng" label="Angular" />
+                            <Radio value="vue" label="Vue" />
+                          </Group>
+                        </Radio.Group>
+                      </>
+                    ))}
+                  </div> */}
                   <div>
-                    {extras ? (
+                    {extras?.length ? (
                       <>
                         <Text size={"xs"} fw={"bold"} py={3}>
                           Extras
@@ -133,7 +199,7 @@ const CartModal = ({ selectItem, count, setCount, handleDecrement, handleIncreme
                     )}
                   </div>
                   <div>
-                    {addons ? (
+                    {addons?.length ? (
                       <div>
                         <Text size={"xs"} fw={"bold"} py={3}>
                           Addons
@@ -152,7 +218,7 @@ const CartModal = ({ selectItem, count, setCount, handleDecrement, handleIncreme
                                       <div class="flex justify-between items-center border-gray-100 w-16">
                                         {/* <div className="mr-5"> */}
                                         <span
-                                          onClick={handleDecrement}
+                                          onClick={() => handleAddonsDecrement(addon.id)}
                                           class="cursor-pointer rounded-l bg-[#FFA8A8] py-0 px-3 duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
                                         >
                                           {" "}
@@ -162,10 +228,10 @@ const CartModal = ({ selectItem, count, setCount, handleDecrement, handleIncreme
                                         <input
                                           class="h-6 w-8 border  bg-white text-center text-xs outline-none"
                                           type="text"
-                                          value={count}
+                                          value={addonsQuantity}
                                         />
                                         <span
-                                          onClick={handleIncrement}
+                                          onClick={() => handleAddonsIncrement(addon.id)}
                                           class="cursor-pointer rounded-r bg-[#FFA8A8] py-0 px-3 duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
                                         >
                                           {" "}

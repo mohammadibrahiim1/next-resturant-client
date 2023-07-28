@@ -36,10 +36,14 @@ const MainMenu = () => {
     handleFilterItems,
     selectItem,
     setSelectItem,
-    count,
+    foodItemCount,
     setCount,
     handleDecrement,
     handleIncrement,
+    addonsQuantity,
+    setAddonsQuantity,
+    incrementFoodItem,
+    decrementFoodItem,
   } = useContext(ApiContext);
   // console.log(categories);
 
@@ -81,10 +85,13 @@ const MainMenu = () => {
           <CartModal
             selectItem={selectItem}
             setSelectItem={setSelectItem}
-            count={count}
-            setCount={setCount}
+            incrementFoodItem={incrementFoodItem}
+            decrementFoodItem={decrementFoodItem}
+            foodItemCount={foodItemCount}
             handleDecrement={handleDecrement}
             handleIncrement={handleIncrement}
+            addonsQuantity={addonsQuantity}
+            setAddonsQuantity={setAddonsQuantity}
           ></CartModal>
         </div>
       </section>
