@@ -12,7 +12,10 @@ import {
   Drawer,
   Radio,
 } from "@mantine/core";
+import { addToCart } from "../../redux/action/action";
 import { MdClose } from "react-icons/md";
+import { useDispatch } from "react-redux";
+// import { ADD_TO_CART } from "../../redux/actionTypes/actionTypes";
 // import { useContext } from "react";
 // import { ApiContext } from "../../Context/DataContext";
 const useStyles = createStyles((theme) => ({
@@ -49,6 +52,7 @@ const CartModal = ({
   decrementFoodItem,
   setAddonsQuantity,
 }) => {
+  const dispatch = useDispatch();
   const { classes } = useStyles();
   const { name, cover, description, convert_price, itemAttributes, extras, addons } = selectItem;
   // console.log(selectItem);
@@ -295,7 +299,7 @@ const CartModal = ({
           </div>
 
           <div>
-            <Button color="pink" w="100%" radius={25} size="md" mt={19}>
+            <Button onClick={() => dispatch(addToCart(item))} color="pink" w="100%" radius={25} size="md" mt={19}>
               Add to cart
             </Button>
           </div>

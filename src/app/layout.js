@@ -4,9 +4,12 @@ import Footer from "../Components/Footer/Footer.jsx";
 import "./globals.css";
 import { Container, MantineProvider } from "@mantine/core";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import DataContext from "../Context/DataContext";
+// import DataContext from "../Context/DataContext";
 import { ModalsProvider } from "@mantine/modals";
 import { Toaster } from "react-hot-toast";
+import { Provider } from "react-redux";
+import store from "../redux/store/store";
+import DataContext from "../Context/DataContext.js";
 
 // export const metadata = {
 //   title: "FoodKing - Restaurant Food Ordering & Delivery App",
@@ -50,33 +53,36 @@ export default function RootLayout({ children }) {
           <html lang="en">
             <body>
               <DataContext>
-                <HeaderMenu></HeaderMenu>
-                <Container size="lg">
-                  <div className="py-11"> {children}</div>
-                  <Toaster
-                    position="top-center"
-                    reverseOrder={false}
-                    toastOptions={{
-                      // Define default options
-                      className: "",
-                      duration: 5000,
-                      style: {
-                        background: "#363636",
-                        color: "#fff",
-                      },
-
-                      // Default options for specific types
-                      success: {
-                        duration: 3000,
-                        theme: {
-                          primary: "green",
-                          secondary: "black",
+                {" "}
+                <Provider store={store}>
+                  <HeaderMenu></HeaderMenu>
+                  <Container size="lg">
+                    <div className="py-11"> {children}</div>
+                    <Toaster
+                      position="top-center"
+                      reverseOrder={false}
+                      toastOptions={{
+                        // Define default options
+                        className: "",
+                        duration: 5000,
+                        style: {
+                          background: "#363636",
+                          color: "#fff",
                         },
-                      },
-                    }}
-                  />
-                </Container>
-                <Footer></Footer>
+
+                        // Default options for specific types
+                        success: {
+                          duration: 3000,
+                          theme: {
+                            primary: "green",
+                            secondary: "black",
+                          },
+                        },
+                      }}
+                    />
+                  </Container>
+                  <Footer></Footer>
+                </Provider>
               </DataContext>
             </body>
           </html>

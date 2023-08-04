@@ -23,7 +23,7 @@ const BranchSelector = () => {
         </Menu.Target>
 
         <Text size={"xs"} h={4} w={91} c={"pink"} fw={700}>
-          {topping}
+          {/* {topping} */}
         </Text>
 
         <Menu.Dropdown>
