@@ -1,5 +1,6 @@
 import axios from "axios";
 import { loadCategory, loadProduct } from "../../action/action";
+import { filterDataBySlug } from "../../action/filterAction";
 
 export const fetchProductsData = () => async (dispatch, getState) => {
   try {
@@ -40,6 +41,21 @@ export const fetchProductCategory = () => async (dispatch, getState) => {
   //     dispatch(loadProduct(data.item));
   //   }
   // };
+};
+export const handleFilterItem = (slug) => async (dispatch) => {
+  try {
+    const res = await axios.get(`http://localhost:5000/api/v1/allMenu?slug=${slug}`);
+    dispatch(filterDataBySlug(res.data));
+    console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
+  // fetch(`http://localhost:5000/api/v1/allMenu?slug=${slug}`)
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     setAllItems(data);
+  //     // console.log(data);
+  //   });
 };
 
 // export default fetchProductsData;

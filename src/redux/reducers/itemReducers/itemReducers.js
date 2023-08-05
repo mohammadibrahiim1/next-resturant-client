@@ -1,9 +1,10 @@
-import { ADD_TO_CART, LOAD_CATEGORY, LOAD_PRODUCT, REMOVE_FROM_CART } from "../../actionTypes/actionTypes";
+import { ADD_TO_CART, FILTER_DATA, LOAD_CATEGORY, LOAD_PRODUCT, REMOVE_FROM_CART } from "../../actionTypes/actionTypes";
 
 const initialState = {
   test: "TEST",
   cart: [],
   products: [],
+  filteredData: [],
   categories: [],
 };
 
@@ -20,6 +21,11 @@ const itemReducer = (state = initialState, action) => {
         ...state,
         products: action.payload,
       };
+
+    case FILTER_DATA:
+      const { slug } = action.payload;
+      const filteredData = state.products.filter((item) => item.slug === slug);
+      return { ...state, filteredData };
     case LOAD_CATEGORY:
       return {
         ...state,
