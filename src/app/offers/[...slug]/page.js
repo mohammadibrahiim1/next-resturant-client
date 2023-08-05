@@ -93,7 +93,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const OfferItems = ({ params }) => {
-  const { classes } = useStyles();
+  const { className } = useStyles();
   const { selectItem, setSelectItem } = useContext(ApiContext);
   // const router = useRouter();
 
@@ -124,10 +124,10 @@ const OfferItems = ({ params }) => {
             {offer.name}
           </Text>
           <div>
-            <div className={classes.card_container}>
+            <div className={className.card_container}>
               {offer.items.map((item) => (
                 <>
-                  <Card className={classes.card} shadow="sm" padding="lg" radius="md">
+                  <Card className={className.card} shadow="sm" padding="lg" radius="md">
                     <Card.Section>
                       <Image src={item.cover} height={160} alt={item.name} />
                       <div className="p-3">
@@ -139,11 +139,11 @@ const OfferItems = ({ params }) => {
                           {item.description.slice(0, 70)}...
                         </Text>
 
-                        <div className={classes.card_button}>
+                        <div className={className.card_button}>
                           <Text size="lg" color="dark" weight={700}>
                             ${item.flat_price}
                           </Text>
-                          <label htmlFor="my_modal_6" onClick={() => setSelectItem(item)} className={classes.btn}>
+                          <label htmlFor="my_modal_6" onClick={() => setSelectItem(item)} className={className.btn}>
                             <IconShoppingBag height={16} />
                             <Text weight={700} size={"sm"}>
                               add

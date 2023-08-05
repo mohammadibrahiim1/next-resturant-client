@@ -75,19 +75,19 @@
     "offer": []
   },
   {
-    "name": "Classic Caesar Salad",
-    "slug": "classic-caesar-salad",
+    "name": "classNameic Caesar Salad",
+    "slug": "classNameic-caesar-salad",
     "flat_price": "3.50",
     "convert_price": 3.5,
     "currency_price": "\u20b13.50",
     "price": "3.500000",
     "item_type": 5,
     "status": 5,
-    "description": "Classic Caesar Salad recipe is a crisp, crunchy, homemade version tossed with a traditional Caesar salad dressing and garlic croutons.",
+    "description": "classNameic Caesar Salad recipe is a crisp, crunchy, homemade version tossed with a traditional Caesar salad dressing and garlic croutons.",
     "caution": "LMIV - Allergen - i). Contains nuts and products thereof. ii). Contains milk and products thereof (including lactose). iii). cashews.",
-    "thumb": "https://demo.foodking.dev/storage/65/conversions/classic_caesar_salad-thumb.png",
-    "cover": "https://demo.foodking.dev/storage/65/conversions/classic_caesar_salad-cover.png",
-    "preview": "https://demo.foodking.dev/storage/65/conversions/classic_caesar_salad-preview.png",
+    "thumb": "https://demo.foodking.dev/storage/65/conversions/classNameic_caesar_salad-thumb.png",
+    "cover": "https://demo.foodking.dev/storage/65/conversions/classNameic_caesar_salad-cover.png",
+    "preview": "https://demo.foodking.dev/storage/65/conversions/classNameic_caesar_salad-preview.png",
     "variations": {
       "6": [
         {
@@ -165,7 +165,7 @@
         "id": 69,
         "item_id": 34,
         "item_addon_id": 55,
-        "item_name": "Classic Caesar Salad",
+        "item_name": "classNameic Caesar Salad",
         "addon_item_name": "Soda (Can)",
         "addon_item_price": "1.500000",
         "addon_item_flat_price": "1.50",
@@ -192,7 +192,7 @@
         "id": 70,
         "item_id": 34,
         "item_addon_id": 53,
-        "item_name": "Classic Caesar Salad",
+        "item_name": "classNameic Caesar Salad",
         "addon_item_name": "Mojito",
         "addon_item_price": "2.000000",
         "addon_item_flat_price": "2.00",

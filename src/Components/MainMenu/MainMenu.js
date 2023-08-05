@@ -5,6 +5,8 @@ import axios from "axios";
 import MenuItems from "../../Components/MenuItems/MenuItems";
 import CartModal from "../CartModal/CartModal";
 import { ApiContext } from "../../Context/DataContext";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductCategory, fetchProductsData } from "../../redux/thunk/products/fetchProducts";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -31,8 +33,6 @@ const useStyles = createStyles((theme) => ({
 
 const MainMenu = () => {
   const {
-    categories,
-    allItems,
     handleFilterItems,
     selectItem,
     setSelectItem,
@@ -46,6 +46,17 @@ const MainMenu = () => {
     decrementFoodItem,
   } = useContext(ApiContext);
   // console.log(categories);
+
+  const dispatch = useDispatch();
+
+  const products = useSelector((state) => state.item.products);
+  const categories = useSelector((state) => state.item.categories);
+  console.log({ products: products, categories: categories });
+
+  useEffect(() => {
+    dispatch(fetchProductsData());
+    dispatch(fetchProductCategory());
+  }, [dispatch]);
 
   const { classes } = useStyles();
 
@@ -75,7 +86,7 @@ const MainMenu = () => {
       </div>
       <section>
         <div>
-          {allItems?.slice(0, 1)?.map((item) => (
+          {products?.slice(0, 1)?.map((item) => (
             <>
               <MenuItems item={item} setSelectItem={setSelectItem}></MenuItems>
             </>

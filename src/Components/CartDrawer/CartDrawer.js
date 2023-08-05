@@ -6,6 +6,7 @@ import { ApiContext } from "../../Context/DataContext";
 import CartItem from "../../Components/CartItem/CartItem";
 import { FaTrash } from "react-icons/fa";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const useStyles = createStyles(() => ({
   cart_button: {
@@ -22,7 +23,9 @@ const CartDrawer = () => {
   const { cartItems, addToCart, removeFromCart, handleIncrement, handleDecrement, clearCart, getCartTotal } =
     useContext(ApiContext);
 
-  // console.log(cart);
+  const cart = useSelector((state) => state.item.cart);
+  console.log(cart);
+
   return (
     <div>
       <Drawer.Root opened={opened} onClose={close} position="right">
@@ -34,8 +37,8 @@ const CartDrawer = () => {
           </Drawer.Header>
           <Drawer.Body>
             <div>
-              {cartItems.length ? (
-                cartItems?.map((item) => (
+              {cart.length ? (
+                cart?.map((item) => (
                   <>
                     <CartItem
                       item={item}
@@ -58,7 +61,8 @@ const CartDrawer = () => {
                 SubTotal :{" "}
               </Text>
               <Text c={"#4DB759"} fw={600} fz={"sm"}>
-                ${getCartTotal()}
+                $ 100
+                {/* ${getCartTotal()} */}
               </Text>
             </div>
             <Link href="/checkout">
@@ -78,7 +82,7 @@ const CartDrawer = () => {
           onClick={open}
           //   px={5}
         >
-          <IconShoppingBag height={19} /> ${getCartTotal()}
+          <IconShoppingBag height={19} />
         </Button>
       </Group>
     </div>

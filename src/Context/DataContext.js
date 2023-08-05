@@ -8,9 +8,9 @@ export const ApiContext = createContext();
 const DataContext = ({ children }) => {
   // const [quantity, setQuantity] = useState(1);
   // console.log(quantity);
-  const [cartItems, setCartItems] = useState(
-    localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : []
-  );
+  // const [cartItems, setCartItems] = useState(
+  //   localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : []
+  // );
   // console.log(cartItems);
   const [allItems, setAllItems] = useState([]);
   // console.log(allItems);
@@ -40,42 +40,42 @@ const DataContext = ({ children }) => {
 
   // console.log(filterItems);
 
-  const addToCart = (item) => {
-    const isItemInCart = cartItems.find((cartItem) => cartItem._id === item._id);
-    if (isItemInCart) {
-      setCartItems(
-        cartItems.map((cartItem) =>
-          cartItem._id === item._id
-            ? {
-                ...cartItem,
-              }
-            : cartItem
-        )
-      );
-    } else {
-      toast.success(`added ${item.name}  successfully`);
-      setCartItems([...cartItems, { ...item, quantity: 1 }]);
-    }
-  };
+  // const addToCart = (item) => {
+  //   const isItemInCart = cartItems.find((cartItem) => cartItem._id === item._id);
+  //   if (isItemInCart) {
+  //     setCartItems(
+  //       cartItems.map((cartItem) =>
+  //         cartItem._id === item._id
+  //           ? {
+  //               ...cartItem,
+  //             }
+  //           : cartItem
+  //       )
+  //     );
+  //   } else {
+  //     toast.success(`added ${item.name}  successfully`);
+  //     setCartItems([...cartItems, { ...item, quantity: 1 }]);
+  //   }
+  // };
 
-  const removeFromCart = (item) => {
-    const isItemInCart = cartItems.find((cartItem) => cartItem._id === item._id);
+  // const removeFromCart = (item) => {
+  //   const isItemInCart = cartItems.find((cartItem) => cartItem._id === item._id);
 
-    if (isItemInCart) {
-      setCartItems(cartItems.filter((cartItem) => cartItem._id !== item._id));
-    } else {
-      setCartItems(
-        cartItems.map((cartItem) =>
-          cartItem._id === item._id
-            ? {
-                ...cartItem,
-                //  quantity: cartItem.quantity - 1
-              }
-            : cartItem
-        )
-      );
-    }
-  };
+  //   if (isItemInCart) {
+  //     setCartItems(cartItems.filter((cartItem) => cartItem._id !== item._id));
+  //   } else {
+  //     setCartItems(
+  //       cartItems.map((cartItem) =>
+  //         cartItem._id === item._id
+  //           ? {
+  //               ...cartItem,
+  //               //  quantity: cartItem.quantity - 1
+  //             }
+  //           : cartItem
+  //       )
+  //     );
+  //   }
+  // };
 
   // modal food item quantity count
 
@@ -124,24 +124,24 @@ const DataContext = ({ children }) => {
   const [addonsQuantity, setAddonsQuantity] = useState(1);
   // console.log(addonsQuantity);
 
-  const clearCart = () => {
-    setCartItems([]);
-  };
+  // const clearCart = () => {
+  //   setCartItems([]);
+  // };
 
-  const getCartTotal = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-  };
+  // const getCartTotal = () => {
+  //   return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  // };
 
-  useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
+  // useEffect(() => {
+  //   localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  // }, [cartItems]);
 
-  useEffect(() => {
-    const cartItems = localStorage.getItem("cartItems");
-    if (cartItems) {
-      setCartItems(JSON.parse(cartItems));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const cartItems = localStorage.getItem("cartItems");
+  //   if (cartItems) {
+  //     setCartItems(JSON.parse(cartItems));
+  //   }
+  // }, []);
 
   const closeModal = () => {
     setModalOpen(false);
@@ -187,11 +187,11 @@ const DataContext = ({ children }) => {
   }, []);
   // const [showModal, setShowModal] = React.useState(false);
   const info = {
-    cartItems,
-    addToCart,
-    removeFromCart,
-    clearCart,
-    getCartTotal,
+    // cartItems,
+    // addToCart,
+    // removeFromCart,
+    // clearCart,
+    // getCartTotal,
     allItems,
     categories,
     handleFilterItems,
@@ -208,10 +208,8 @@ const DataContext = ({ children }) => {
     selectItem,
     // count,
     // setCount,
-
     setAddonsQuantity,
     addonsQuantity,
-
     foodItemCount,
     incrementFoodItem,
     decrementFoodItem,

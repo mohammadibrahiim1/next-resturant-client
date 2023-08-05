@@ -99,32 +99,32 @@ const CartModal = ({
               {selectItem && selectItem ? (
                 <>
                   {" "}
-                  <div class="justify-between mb-4 rounded-lg bg-white shadow sm:flex sm:justify-start p-1">
+                  <div className="justify-between mb-4 rounded-lg bg-white shadow sm:flex sm:justify-start p-1">
                     <Image alt="food-img" src={cover} width={"95px"} height={"85px"} radius={"md"} />
 
-                    <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
-                      <div class="mt-5 sm:mt-0">
-                        <Text class="text-sm font-semibold text-[#FF6B6B]">{name}</Text>
-                        <Text class="text-xs font-semibold text-dark-50">{description}</Text>
+                    <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
+                      <div className="mt-5 sm:mt-0">
+                        <Text className="text-sm font-semibold text-[#FF6B6B]">{name}</Text>
+                        <Text className="text-xs font-semibold text-dark-50">{description}</Text>
                         <div className="mt-2 pe-1 flex justify-between">
-                          <div class="flex justify-between items-center border-gray-100">
+                          <div className="flex justify-between items-center border-gray-100">
                             {/* <div className="mr-5"> */}
                             <span
                               onClick={decrementFoodItem}
-                              class="cursor-pointer rounded-l bg-[#FFA8A8] py-0 px-3 duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
+                              className="cursor-pointer rounded-l bg-[#FFA8A8] py-0 px-3 duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
                             >
                               {" "}
                               -{" "}
                             </span>
 
                             <input
-                              class="h-6 w-8 border  bg-white text-center text-xs outline-none"
+                              className="h-6 w-8 border  bg-white text-center text-xs outline-none"
                               type="text"
                               value={foodItemCount}
                             />
                             <span
                               onClick={incrementFoodItem}
-                              class="cursor-pointer rounded-r bg-[#FFA8A8] py-0 px-3  duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
+                              className="cursor-pointer rounded-r bg-[#FFA8A8] py-0 px-3  duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
                             >
                               {" "}
                               +{" "}
@@ -136,17 +136,17 @@ const CartModal = ({
                               {/* <FaTrash className="text-[#FFA8A8] hover:text-[#FF6B6B] transition duration-700 cursor-pointer" /> */}
                             </span>
                           </div>
-                          <Text class="text-normal font-bold text-[#4DB759]">${updatedPrice}</Text>
+                          <Text className="text-normal font-bold text-[#4DB759]">${updatedPrice}</Text>
                         </div>
 
-                        {/* <p class="mt-1 text-sm font-semibold text-error">
+                        {/* <p className="mt-1 text-sm font-semibold text-error">
                       Total : <span className="text-error">{updatedPrice}</span> $
                     </p> */}
-                        {/* <p class="mt-1 text-sm font-semibold text-error">
+                        {/* <p className="mt-1 text-sm font-semibold text-error">
             Total : <span className="text-error">{getCartTotal()}</span> $
           </p> */}
                       </div>
-                      <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6"></div>
+                      <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6"></div>
                     </div>
                   </div>
                   <div></div>
@@ -211,32 +211,32 @@ const CartModal = ({
                         <div className={classes.addon_container}>
                           {addons?.map((addon) => (
                             <>
-                              <div class=" shadow p-1  mb-4 mt-1 rounded-lg bg-white  sm:flex sm:justify-start border h-[79px] ">
+                              <div className=" shadow p-1  mb-4 mt-1 rounded-lg bg-white  sm:flex sm:justify-start border h-[79px] ">
                                 <Image alt="food-img" src={addon.cover} width={"95px"} height={"69px"} radius={"xs"} />
 
-                                <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
-                                  <div class="mt-5 sm:mt-0">
-                                    <Text class="text-xs font-semibold text-secondary">{addon.addon_item_name}</Text>
-                                    {/* <Text class="text-xs font-semibold text-dark-50">{description}</Text> */}
+                                <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
+                                  <div className="mt-5 sm:mt-0">
+                                    <Text className="text-xs font-semibold text-secondary">{addon.addon_item_name}</Text>
+                                    {/* <Text className="text-xs font-semibold text-dark-50">{description}</Text> */}
                                     <div className="mt-2 pe-1 flex flex-col justify-between">
-                                      <div class="flex justify-between items-center border-gray-100 w-16">
+                                      <div className="flex justify-between items-center border-gray-100 w-16">
                                         {/* <div className="mr-5"> */}
                                         <span
                                           onClick={() => handleAddonsDecrement(addon.id)}
-                                          class="cursor-pointer rounded-l bg-[#FFA8A8] py-0 px-3 duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
+                                          className="cursor-pointer rounded-l bg-[#FFA8A8] py-0 px-3 duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
                                         >
                                           {" "}
                                           -{" "}
                                         </span>
 
                                         <input
-                                          class="h-6 w-8 border  bg-white text-center text-xs outline-none"
+                                          className="h-6 w-8 border  bg-white text-center text-xs outline-none"
                                           type="text"
                                           value={addonsQuantity}
                                         />
                                         <span
                                           onClick={() => handleAddonsIncrement(addon.id)}
-                                          class="cursor-pointer rounded-r bg-[#FFA8A8] py-0 px-3 duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
+                                          className="cursor-pointer rounded-r bg-[#FFA8A8] py-0 px-3 duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
                                         >
                                           {" "}
                                           +{" "}
@@ -246,12 +246,12 @@ const CartModal = ({
                                         // onClick={() => removeFromCart(item)}
                                         ></span>
                                       </div>
-                                      <Text class="text-normal font-bold text-[#4DB759]">
+                                      <Text className="text-normal font-bold text-[#4DB759]">
                                         ${addon.addon_item_flat_price}
                                       </Text>
                                     </div>
                                   </div>
-                                  <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6"></div>
+                                  <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6"></div>
                                 </div>
                               </div>
                               {/* <div className="border flex items-center gap-2 rounded-md ps-1 pe-1 w-[109px] ">
@@ -299,7 +299,7 @@ const CartModal = ({
           </div>
 
           <div>
-            <Button onClick={() => dispatch(addToCart(item))} color="pink" w="100%" radius={25} size="md" mt={19}>
+            <Button onClick={() => dispatch(addToCart(selectItem))} color="pink" w="100%" radius={25} size="md" mt={19}>
               Add to cart
             </Button>
           </div>
