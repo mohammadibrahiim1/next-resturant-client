@@ -45,7 +45,7 @@ const useStyles = createStyles((theme) => ({
 const data = [
   {
     slug: "test",
-    image: "https://demo.foodking.dev/storage/89/conversions/creamy-saop-sticker-(5.5-\u00d7-3.559-cm)-cover.png",
+    image: "https://i.ibb.co/n8Pzxh3/creamy-saop-sticker-cover.png",
   },
   {
     slug: "uplifting-anytime",
