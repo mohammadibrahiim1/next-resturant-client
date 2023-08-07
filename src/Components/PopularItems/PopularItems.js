@@ -27,7 +27,6 @@ const useStyles = createStyles(() => ({
 }));
 
 const PopularItems = () => {
-  const { selectItem, setSelectItem } = useContext(ApiContext);
   const { classes } = useStyles();
   const {
     data: popularItems = [],
@@ -47,12 +46,12 @@ const PopularItems = () => {
       <div className={classes.popular_items_container}>
         {popularItems.map((popularItem) => (
           <>
-            <PopularItemsCard popularItem={popularItem} setSelectItem={setSelectItem}></PopularItemsCard>
+            <PopularItemsCard popularItem={popularItem}></PopularItemsCard>
           </>
         ))}
       </div>
       <div>
-        <CartModal selectItem={selectItem}></CartModal>
+        <CartModal></CartModal>
       </div>
     </div>
   );

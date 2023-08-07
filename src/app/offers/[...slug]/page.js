@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../../Context/DataContext";
 import CartModal from "../../../Components/CartModal/CartModal";
+import { addToModal } from "../../../redux/action/action";
+import { useDispatch } from "react-redux";
 
 const useStyles = createStyles((theme) => ({
   card_container: {
@@ -58,8 +60,10 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const OfferItems = ({ params }) => {
+  const dispatch = useDispatch();
   const { classes } = useStyles();
-  const { selectItem, setSelectItem } = useContext(ApiContext);
+  // const { selectItem, setSelectItem } = useContext(ApiContext);
+  // console.log(selectItem);
   // const router = useRouter();
 
   const [data, setData] = useState([]);
@@ -109,7 +113,11 @@ const OfferItems = ({ params }) => {
                           <Text size="lg" color="dark" weight={700}>
                             ${item.flat_price}
                           </Text>
-                          <label htmlFor="my_modal_6" onClick={() => setSelectItem(item)} className={classes.btn}>
+                          <label
+                            htmlFor="my_modal_6"
+                            onClick={() => dispatch(addToModal(item))}
+                            className={classes.btn}
+                          >
                             <IconShoppingBag height={16} />
                             <Text weight={700} size={"sm"}>
                               add
@@ -127,7 +135,7 @@ const OfferItems = ({ params }) => {
       ))}
 
       <div>
-        <CartModal selectItem={selectItem}></CartModal>
+        <CartModal></CartModal>
       </div>
     </div>
   );

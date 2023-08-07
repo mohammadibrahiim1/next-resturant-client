@@ -55,9 +55,8 @@ const CartModal = ({
   const dispatch = useDispatch();
   const { classes } = useStyles();
   const modal = useSelector((state) => state.item.modal);
-  console.log(modal);
   const { name, cover, description, convert_price, itemAttributes, extras, addons } = modal;
-  // console.log(selectItem);
+  console.log(modal);
 
   const handleAddonsDecrement = (id) => {
     const decrementItem = addons.filter((addon) => {
@@ -98,7 +97,7 @@ const CartModal = ({
         <div className="w-[650px] p-5 bg-[#FFFFFF] rounded-lg">
           <div className="flex justify-between items-start  gap-2">
             <div>
-              {selectItem && selectItem ? (
+              {modal && modal ? (
                 <>
                   {" "}
                   <div className="justify-between mb-4 rounded-lg bg-white shadow sm:flex sm:justify-start p-1">

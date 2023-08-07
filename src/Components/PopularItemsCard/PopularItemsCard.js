@@ -3,6 +3,8 @@ import { Avatar, Button, Card, Group, Image, Text, createStyles } from "@mantine
 import { IconShoppingBag } from "@tabler/icons-react";
 import React, { useContext } from "react";
 import { ApiContext } from "../../Context/DataContext";
+import { useDispatch } from "react-redux";
+import { addToModal } from "../../redux/action/action";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -68,6 +70,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const PopularItemsCard = ({ popularItem, setSelectItem }) => {
+  const dispatch = useDispatch();
   // const { addToCart } = useContext(ApiContext);
   const { classes } = useStyles();
 
@@ -89,13 +92,7 @@ const PopularItemsCard = ({ popularItem, setSelectItem }) => {
               <Text size="lg" color="dark" weight={700}>
                 ${flat_price}
               </Text>
-              <label
-                htmlFor="my_modal_6"
-                onClick={() => {
-                  setSelectItem(popularItem);
-                }}
-                className={classes.btn}
-              >
+              <label htmlFor="my_modal_6" onClick={() => dispatch(addToModal(popularItem))} className={classes.btn}>
                 <IconShoppingBag height={16} />
                 <Text weight={700} size={"sm"}>
                   add
