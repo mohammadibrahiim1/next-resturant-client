@@ -10,40 +10,6 @@ import { ApiContext } from "../../../Context/DataContext";
 import CartModal from "../../../Components/CartModal/CartModal";
 
 const useStyles = createStyles((theme) => ({
-  // container: {
-  //   marginTop: "65px",
-  //   display: "grid",
-  //   gridTemplateColumns: "repeat(2,1fr)",
-  //   justifyContent: "space-between",
-  //   alignItems: "center",
-  //   gap: "28px",
-  // },
-  // card: {
-  //   height: rem(136),
-  //   display: "flex",
-  //   flexDirection: "column",
-  //   justifyContent: "space-between",
-  //   alignItems: "flex-start",
-  //   backgroundSize: "cover",
-  //   backgroundPosition: "center",
-  // },
-
-  // title: {
-  //   fontFamily: `Greycliff CF ${theme.fontFamily}`,
-  //   fontWeight: 900,
-  //   color: theme.white,
-  //   lineHeight: 1.2,
-  //   fontSize: rem(32),
-  //   marginTop: theme.spacing.xs,
-  // },
-
-  // category: {
-  //   color: theme.white,
-  //   opacity: 0.7,
-  //   fontWeight: 700,
-  //   textTransform: "uppercase",
-  // },
-
   card_container: {
     display: "grid",
     gridTemplateColumns: "repeat(4,1fr)",
@@ -59,7 +25,6 @@ const useStyles = createStyles((theme) => ({
       boxShadow: "0 8px 16px 0 rgba(0,0,0,0.1), 0 5px 20px 0 rgba(0,0,0,0.1) ",
       transition: "0.3s",
     },
-    // backgroundColor: "#F8F9FA",
   },
 
   card_button: {
@@ -98,6 +63,7 @@ const OfferItems = ({ params }) => {
   // const router = useRouter();
 
   const [data, setData] = useState([]);
+  console.log(data);
 
   const slug = params.slug[0];
 
@@ -121,11 +87,11 @@ const OfferItems = ({ params }) => {
       {data?.map((offer) => (
         <>
           <Text mb={25} color="#FF006B" tt="capitalize" fz="28px" fw={700}>
-            {offer.name}
+            {offer?.name}
           </Text>
           <div>
             <div className={className.card_container}>
-              {offer.items.map((item) => (
+              {offer?.items?.map((item) => (
                 <>
                   <Card className={className.card} shadow="sm" padding="lg" radius="md">
                     <Card.Section>
