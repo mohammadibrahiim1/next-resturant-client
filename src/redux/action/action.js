@@ -1,4 +1,4 @@
-import { ADD_TO_CART, LOAD_CATEGORY, LOAD_PRODUCT, REMOVE_FROM_CART } from "../actionTypes/actionTypes";
+import { ADD_TO_CART, ADD_TO_MODAL, LOAD_CATEGORY, LOAD_PRODUCT, REMOVE_FROM_CART } from "../actionTypes/actionTypes";
 
 // fetch food items from database using redux thunk
 export const loadProduct = (data) => {
@@ -18,6 +18,12 @@ export const addToCart = (selectItem) => {
   return {
     type: ADD_TO_CART,
     payload: selectItem,
+  };
+};
+export const addToModal = (selectModalItem) => {
+  return {
+    type: ADD_TO_MODAL,
+    payload: selectModalItem,
   };
 };
 

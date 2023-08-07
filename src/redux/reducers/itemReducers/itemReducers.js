@@ -1,7 +1,14 @@
-import { ADD_TO_CART, LOAD_CATEGORY, LOAD_PRODUCT, REMOVE_FROM_CART } from "../../actionTypes/actionTypes";
+import {
+  ADD_TO_CART,
+  ADD_TO_MODAL,
+  LOAD_CATEGORY,
+  LOAD_PRODUCT,
+  REMOVE_FROM_CART,
+} from "../../actionTypes/actionTypes";
 
 const initialState = {
   test: "TEST",
+  modal: {},
   cart: [],
   products: [],
   categories: [],
@@ -38,6 +45,21 @@ const itemReducer = (state = initialState, action) => {
 
         return { ...state, cart: [...newCart, selectedItem] };
       }
+
+      return { ...state, cart: [...state.cart, { ...action.payload, quantity: 1 }] };
+
+    case ADD_TO_MODAL:
+      return {
+        ...state,
+        modal: { ...state.modal, ...action.payload },
+      };
+      // if (selectedItem) {
+      //   const newCart = state.cart.filter((item) => item._id !== selectedItem._id);
+
+      //   selectedItem.quantity = selectedItem.quantity + 1;
+
+      //   return { ...state, cart: [...newCart, selectedItem] };
+      // }
 
       return { ...state, cart: [...state.cart, { ...action.payload, quantity: 1 }] };
 

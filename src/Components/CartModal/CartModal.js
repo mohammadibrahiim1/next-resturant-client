@@ -14,7 +14,7 @@ import {
 } from "@mantine/core";
 import { addToCart } from "../../redux/action/action";
 import { MdClose } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import { ADD_TO_CART } from "../../redux/actionTypes/actionTypes";
 // import { useContext } from "react";
 // import { ApiContext } from "../../Context/DataContext";
@@ -54,7 +54,9 @@ const CartModal = ({
 }) => {
   const dispatch = useDispatch();
   const { classes } = useStyles();
-  const { name, cover, description, convert_price, itemAttributes, extras, addons } = selectItem;
+  const modal = useSelector((state) => state.item.modal);
+  console.log(modal);
+  const { name, cover, description, convert_price, itemAttributes, extras, addons } = modal;
   // console.log(selectItem);
 
   const handleAddonsDecrement = (id) => {

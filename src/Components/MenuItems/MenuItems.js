@@ -4,6 +4,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../../Context/DataContext";
 import { useDisclosure } from "@mantine/hooks";
 import CartModal from "../CartModal/CartModal";
+import { useDispatch, useSelector } from "react-redux";
+import { addToModal } from "../../redux/action/action";
 // import CartModal from "../../Components/CartModal/CartModal";
 
 const useStyles = createStyles(() => ({
@@ -56,6 +58,8 @@ const useStyles = createStyles(() => ({
 }));
 
 const MenuItems = ({ item, setSelectItem }) => {
+  const dispatch = useDispatch();
+
   const { classes } = useStyles();
   const { items, addons, _id } = item;
 
@@ -84,7 +88,12 @@ const MenuItems = ({ item, setSelectItem }) => {
                       <Text size="lg" color="dark" weight={700}>
                         ${item.flat_price}
                       </Text>
-                      <label htmlFor="my_modal_6" className={classes.btn}>
+                      <label
+                        htmlFor="my_modal_6"
+                        onClick={() => dispatch(addToModal(item))}
+                        // onClick={() => setSelectItem(item)}
+                        className={classes.btn}
+                      >
                         <IconShoppingBag height={16} />
                         <Text weight={700} size={"sm"}>
                           add
