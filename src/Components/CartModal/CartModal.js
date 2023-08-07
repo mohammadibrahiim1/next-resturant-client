@@ -218,7 +218,9 @@ const CartModal = ({
 
                                 <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                                   <div className="mt-5 sm:mt-0">
-                                    <Text className="text-xs font-semibold text-secondary">{addon.addon_item_name}</Text>
+                                    <Text className="text-xs font-semibold text-secondary">
+                                      {addon.addon_item_name}
+                                    </Text>
                                     {/* <Text className="text-xs font-semibold text-dark-50">{description}</Text> */}
                                     <div className="mt-2 pe-1 flex flex-col justify-between">
                                       <div className="flex justify-between items-center border-gray-100 w-16">
@@ -301,7 +303,7 @@ const CartModal = ({
           </div>
 
           <div>
-            <Button onClick={() => dispatch(addToCart(selectItem))} color="pink" w="100%" radius={25} size="md" mt={19}>
+            <Button onClick={() => dispatch(addToCart(modal))} color="pink" w="100%" radius={25} size="md" mt={19}>
               Add to cart
             </Button>
           </div>

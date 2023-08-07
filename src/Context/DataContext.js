@@ -91,34 +91,34 @@ const DataContext = ({ children }) => {
   };
 
   //  increase cart product quantity
-  const handleIncrement = () => {
-    // const incrementItem = cartItems.map((cartItem) => {
-    //   if (cartItem._id === id) {
-    //     return {
-    //       ...cartItem,
-    //       quantity: cartItem.quantity + 1,
-    //     };
-    //   }
-    //   return cartItem;
-    // });
-    setCount((count) => count + 1);
-  };
+  // const handleIncrement = () => {
+  //   // const incrementItem = cartItems.map((cartItem) => {
+  //   //   if (cartItem._id === id) {
+  //   //     return {
+  //   //       ...cartItem,
+  //   //       quantity: cartItem.quantity + 1,
+  //   //     };
+  //   //   }
+  //   //   return cartItem;
+  //   // });
+  //   setCount((count) => count + 1);
+  // };
 
-  const handleDecrement = () => {
-    // const decrementItem = cartItems.map((cartItem) => {
-    //   if (cartItem._id === id && cartItem.quantity > 1) {
-    //     return {
-    //       ...cartItem,
-    //       quantity: cartItem.quantity - 1,
-    //     };
-    //   }
-    //   return cartItem;
-    // });
-    if (count > 1) {
-      setCount((count) => count - 1);
-    }
-    // setCount(count - 1);
-  };
+  // const handleDecrement = () => {
+  //   // const decrementItem = cartItems.map((cartItem) => {
+  //   //   if (cartItem._id === id && cartItem.quantity > 1) {
+  //   //     return {
+  //   //       ...cartItem,
+  //   //       quantity: cartItem.quantity - 1,
+  //   //     };
+  //   //   }
+  //   //   return cartItem;
+  //   // });
+  //   if (count > 1) {
+  //     setCount((count) => count - 1);
+  //   }
+  //   // setCount(count - 1);
+  // };
 
   // handle addons quantity and price
   const [addonsQuantity, setAddonsQuantity] = useState(1);
@@ -199,8 +199,8 @@ const DataContext = ({ children }) => {
     setFilterItems,
     // isModalOpen,
     closeModal,
-    handleDecrement,
-    handleIncrement,
+    // handleDecrement,
+    // handleIncrement,
     branches,
     topping,
     onOptionChange,

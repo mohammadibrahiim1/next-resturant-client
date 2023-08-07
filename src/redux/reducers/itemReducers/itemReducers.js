@@ -37,6 +37,11 @@ const itemReducer = (state = initialState, action) => {
         ...state,
         categories: action.payload,
       };
+    case ADD_TO_MODAL:
+      return {
+        ...state,
+        modal: { ...state.modal, ...action.payload },
+      };
     case ADD_TO_CART:
       if (selectedItem) {
         const newCart = state.cart.filter((item) => item._id !== selectedItem._id);
@@ -45,21 +50,6 @@ const itemReducer = (state = initialState, action) => {
 
         return { ...state, cart: [...newCart, selectedItem] };
       }
-
-      return { ...state, cart: [...state.cart, { ...action.payload, quantity: 1 }] };
-
-    case ADD_TO_MODAL:
-      return {
-        ...state,
-        modal: { ...state.modal, ...action.payload },
-      };
-      // if (selectedItem) {
-      //   const newCart = state.cart.filter((item) => item._id !== selectedItem._id);
-
-      //   selectedItem.quantity = selectedItem.quantity + 1;
-
-      //   return { ...state, cart: [...newCart, selectedItem] };
-      // }
 
       return { ...state, cart: [...state.cart, { ...action.payload, quantity: 1 }] };
 

@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { removeFromCart } from "../../redux/action/action";
 
 const CartItem = ({ item, handleIncrement, handleDecrement }) => {
+  console.log(item);
   const { cover, name, convert_price, _id, quantity } = item;
 
   const updatedPrice = convert_price * quantity;
