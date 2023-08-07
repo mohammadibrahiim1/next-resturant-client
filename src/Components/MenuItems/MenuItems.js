@@ -84,7 +84,7 @@ const MenuItems = ({ item, setSelectItem }) => {
                       <Text size="lg" color="dark" weight={700}>
                         ${item.flat_price}
                       </Text>
-                      <label htmlFor="my_modal_6" onClick={() => setSelectItem(item)} className={classes.btn}>
+                      <label htmlFor="my_modal_6" className={classes.btn}>
                         <IconShoppingBag height={16} />
                         <Text weight={700} size={"sm"}>
                           add

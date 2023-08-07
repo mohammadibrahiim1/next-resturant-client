@@ -1,17 +1,22 @@
-// import { FILTER_DATA } from "../../actionTypes/actionTypes";
+import { FILTER_DATA } from "../../actionTypes/actionTypes";
 
-// const initialState = {
-//   filteredData: [],
-// };
+const initialState = {
+  test: "filter",
+  filteredData: [],
+};
 
-// export const filterReducer = (state = initialState, action) => {
-//   switch (action.type) {
-//     case FILTER_DATA:
-//       const { slug } = action.payload;
-//       const filteredData = state.
-//       break;
+const filterReducer = (state = initialState, action) => {
+  console.log(state);
+  switch (action.type) {
+    case FILTER_DATA:
+      return {
+        ...state,
+        filteredData: action.payload,
+      };
 
-//     default:
-//       break;
-//   }
-// };
+    default:
+      return state;
+  }
+};
+
+export default filterReducer;

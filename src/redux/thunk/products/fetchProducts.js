@@ -45,6 +45,7 @@ export const fetchProductCategory = () => async (dispatch, getState) => {
 export const handleFilterItem = (slug) => async (dispatch) => {
   try {
     const res = await axios.get(`http://localhost:5000/api/v1/allMenu?slug=${slug}`);
+    console.log(res);
     dispatch(filterDataBySlug(res.data));
     console.log(res);
   } catch (error) {

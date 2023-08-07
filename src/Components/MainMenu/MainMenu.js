@@ -7,7 +7,8 @@ import CartModal from "../CartModal/CartModal";
 import { ApiContext } from "../../Context/DataContext";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductCategory, fetchProductsData, handleFilterItem } from "../../redux/thunk/products/fetchProducts";
-// import filterDataBySlug from "../../redux/action/filterAction";
+
+// import handleFilterData from "../../redux/action/filterAction";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -32,7 +33,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const MainMenu = () => {
+const MainMenu = ({ handleFilterData }) => {
   const {
     handleFilterItems,
     selectItem,
@@ -52,14 +53,20 @@ const MainMenu = () => {
 
   const products = useSelector((state) => state.item.products);
   const categories = useSelector((state) => state.item.categories);
-  const filteredData = useSelector((state) => state.item.filteredData);
+  const filteredData = useSelector((state) => state.filter.filteredData);
   console.log(filteredData);
+  // const filteredData = useSelector((state) => state.filter.filteredData);
+  // console.log(filteredData);
   console.log({ products: products, categories: categories });
 
   useEffect(() => {
     dispatch(fetchProductsData());
     dispatch(fetchProductCategory());
   }, [dispatch]);
+
+  // const handleFilterItem = async (slug) => {
+  //   await handleFilterData(slug);
+  // };
 
   let content;
   // if (products.length) {
@@ -69,19 +76,20 @@ const MainMenu = () => {
   //     </>
   //   ));
   // }
-  if (products.length || filteredData.length) {
+  if (products.length) {
     content = products?.slice(0, 1).map((item) => (
       <>
         <MenuItems item={item}></MenuItems>
       </>
     ));
   }
-  // const handleFilterData = (slug) => {
-  //   dispatch(filterDataBySlug(slug));
-  // };
-  // if (categories.length) {
-  //   content = categories?map()
-  // }
+  if (products.length && filteredData.length) {
+    content = filteredData?.map((item) => (
+      <>
+        <MenuItems item={item}></MenuItems>
+      </>
+    ));
+  }
 
   const { classes } = useStyles();
 
@@ -91,7 +99,7 @@ const MainMenu = () => {
         {categories?.slice(0, 8)?.map((item) => (
           <>
             <Card
-              onClick={() => handleFilterItem(item.slug)}
+              onClick={() => dispatch(handleFilterItem(item.slug))}
               className={classes.card}
               href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
               target="_blank"
