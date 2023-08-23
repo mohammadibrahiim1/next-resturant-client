@@ -9,6 +9,7 @@ import {
   IconTrash,
   IconUserCircle,
 } from "@tabler/icons-react";
+import Link from "next/link";
 import React from "react";
 
 const useStyles = createStyles(() => ({
@@ -38,7 +39,10 @@ export default function UserProfile() {
 
         <Menu.Dropdown>
           <Menu.Label>Application</Menu.Label>
-          <Menu.Item icon={<IconSettings size={14} />}>Settings</Menu.Item>
+          <Menu.Item icon={<IconSettings size={14} />}>
+            {" "}
+            <Link href={"/phoneAuthentication"}>sign in</Link>{" "}
+          </Menu.Item>
           <Menu.Item icon={<IconMessageCircle size={14} />}>Messages</Menu.Item>
           <Menu.Item icon={<IconPhoto size={14} />}>Gallery</Menu.Item>
           <Menu.Item
