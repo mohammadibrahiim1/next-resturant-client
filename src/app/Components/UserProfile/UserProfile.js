@@ -49,6 +49,7 @@ export default function UserProfile() {
               <Text> Mohammad Ibrahim </Text>
               <Text> User Email</Text>
               <Text>01625619689</Text>
+              <Text>$0.00</Text>
             </div>
           </Menu.Label>
 
