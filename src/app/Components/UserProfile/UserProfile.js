@@ -1,13 +1,18 @@
-import { Button, Menu, Text, createStyles } from "@mantine/core";
+import { Avatar, Button, Menu, Text, createStyles } from "@mantine/core";
+import { IconKey, IconLogout } from "@tabler/icons-react";
 import {
+  IconAddressBook,
   IconArrowsLeftRight,
+  IconBrandMessenger,
   IconChevronDown,
   IconMessageCircle,
   IconPhoto,
   IconSearch,
   IconSettings,
+  IconToolsKitchen,
   IconTrash,
   IconUserCircle,
+  IconUserEdit,
 } from "@tabler/icons-react";
 import Link from "next/link";
 import React from "react";
@@ -30,7 +35,7 @@ export default function UserProfile() {
   return (
     <div>
       {" "}
-      <Menu shadow="md" width={360}>
+      <Menu position="top-end" shadow="md" width={"340px"}>
         <Menu.Target>
           <Button className={classes.profile_button} radius="xl" size="xs">
             <IconUserCircle height={19} width={19} /> Account <IconChevronDown height={15} width={15} />
@@ -38,30 +43,44 @@ export default function UserProfile() {
         </Menu.Target>
 
         <Menu.Dropdown>
-          <Menu.Label>Application</Menu.Label>
-          <Menu.Item icon={<IconSettings size={14} />}>
+          <Menu.Label>
+            <div className="text-center py-7">
+              <Avatar className="flex mx-auto" radius={"xl"} size={"lg"} src="avatar.png" alt="it's me" />
+              <Text> Mohammad Ibrahim </Text>
+              <Text> User Email</Text>
+              <Text>01625619689</Text>
+            </div>
+          </Menu.Label>
+
+          <Menu.Item fw={600} tt={"capitalize"} icon={<IconToolsKitchen size={18} />}>
             {" "}
-            <Link href={"/phoneAuthentication"}>sign in</Link>{" "}
+            <Link href={"/myOrders"}>My Orders</Link>{" "}
           </Menu.Item>
-          <Menu.Item icon={<IconMessageCircle size={14} />}>Messages</Menu.Item>
-          <Menu.Item icon={<IconPhoto size={14} />}>Gallery</Menu.Item>
-          <Menu.Item
-            icon={<IconSearch size={14} />}
-            rightSection={
-              <Text size="xs" color="dimmed">
-                ⌘K
-              </Text>
-            }
-          >
-            Search
+          <Menu.Divider />
+          <Menu.Item fw={600} tt={"capitalize"} icon={<IconUserEdit size={18} />}>
+            {" "}
+            <Link href={"/myOrders"}>Edit Profile</Link>{" "}
+          </Menu.Item>
+          <Menu.Divider />
+          <Menu.Item fw={600} tt={"capitalize"} icon={<IconBrandMessenger size={18} />}>
+            {" "}
+            <Link href={"/myOrders"}>Chat</Link>{" "}
+          </Menu.Item>
+          <Menu.Divider />
+          <Menu.Item fw={600} tt={"capitalize"} icon={<IconAddressBook size={18} />}>
+            {" "}
+            <Link href={"/myOrders"}>Address</Link>{" "}
+          </Menu.Item>
+          <Menu.Divider />
+          <Menu.Item fw={600} tt={"capitalize"} icon={<IconKey size={18} />}>
+            {" "}
+            <Link href={"/myOrders"}>Change Password</Link>{" "}
           </Menu.Item>
 
           <Menu.Divider />
 
-          <Menu.Label>Danger zone</Menu.Label>
-          <Menu.Item icon={<IconArrowsLeftRight size={14} />}>Transfer my data</Menu.Item>
-          <Menu.Item color="red" icon={<IconTrash size={14} />}>
-            Delete my account
+          <Menu.Item fw={600} tt={"capitalize"} color="red" icon={<IconLogout size={18} />}>
+            <Link href={"/phoneAuthentication"}>sign in</Link>{" "}
           </Menu.Item>
         </Menu.Dropdown>
       </Menu>
