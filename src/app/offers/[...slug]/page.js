@@ -1,16 +1,12 @@
 "use client";
-import { Button, Card, Image, Text, createStyles, rem } from "@mantine/core";
-import { IconShoppingBag } from "@tabler/icons-react";
+import { Card, Container, Image, Text, createStyles } from "@mantine/core";
+import { IconArrowNarrowLeft, IconShoppingBag } from "@tabler/icons-react";
 import axios from "axios";
-
-import { useRouter } from "next/router";
-
-import { useContext, useEffect, useState } from "react";
-import { ApiContext } from "../../../Context/DataContext";
-import CartModal from "../../../Components/CartModal/CartModal";
-import { addToModal } from "../../../redux/action/action";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-
+import { addToModal } from "../../redux/features/modalSlice/modalSlice";
+import FoodOrderModal from "../../Components/FoodOrderModal/FoodOrderModal";
 const useStyles = createStyles((theme) => ({
   card_container: {
     display: "grid",
@@ -58,14 +54,9 @@ const useStyles = createStyles((theme) => ({
     },
   },
 }));
-
-const OfferItems = ({ params }) => {
+export default function OfferItems({ params }) {
   const dispatch = useDispatch();
   const { classes } = useStyles();
-  // const { selectItem, setSelectItem } = useContext(ApiContext);
-  // console.log(selectItem);
-  // const router = useRouter();
-
   const [data, setData] = useState([]);
   console.log(data);
 
@@ -87,58 +78,68 @@ const OfferItems = ({ params }) => {
 
   return (
     <div>
-      {/* new offer page */}
-      {data?.map((offer) => (
-        <>
-          <Text mb={25} color="#FF006B" tt="capitalize" fz="28px" fw={700}>
-            {offer?.name}
-          </Text>
-          <div>
-            <div className={classes.card_container}>
-              {offer?.items?.map((item) => (
-                <>
-                  <Card className={classes.card} shadow="sm" padding="lg" radius="md">
-                    <Card.Section>
-                      <Image src={item.cover} height={160} alt={item.name} />
-                      <div className="p-3">
-                        <Text fz="sm" weight={700}>
-                          {item.name}
-                        </Text>
-
-                        <Text size="xs" color="dimmed" className="pt-2">
-                          {item.description.slice(0, 70)}...
-                        </Text>
-
-                        <div className={classes.card_button}>
-                          <Text size="lg" color="dark" weight={700}>
-                            ${item.flat_price}
-                          </Text>
-                          <label
-                            htmlFor="my_modal_6"
-                            onClick={() => dispatch(addToModal(item))}
-                            className={classes.btn}
-                          >
-                            <IconShoppingBag height={16} />
-                            <Text weight={700} size={"sm"}>
-                              add
-                            </Text>
-                          </label>
-                        </div>
-                      </div>
-                    </Card.Section>
-                  </Card>
-                </>
-              ))}
+      {" "}
+      <Container size={"lg"} pt={110}>
+        {/* new offer page */}
+        {data?.map((offer) => (
+          <>
+            <div className="flex justify-between items-center">
+              <Text mb={25} color="#FF006B" tt="capitalize" fz="28px" fw={700}>
+                {offer?.name}
+              </Text>
             </div>
-          </div>
-        </>
-      ))}
+            <div>
+              <div className={classes.card_container}>
+                {offer?.items?.map((item) => (
+                  <>
+                    <Card className={classes.card} shadow="sm" padding="lg" radius="md">
+                      <Card.Section>
+                        <Image src={item.cover} height={160} alt={item.name} />
+                        <div className="p-3">
+                          <Text fz="sm" weight={700}>
+                            {item.name}
+                          </Text>
 
-      <div>
-        <CartModal></CartModal>
-      </div>
+                          <Text size="xs" color="dimmed" className="pt-2">
+                            {item.description.slice(0, 70)}...
+                          </Text>
+
+                          <div className={classes.card_button}>
+                            <Text size="lg" color="dark" weight={700}>
+                              ${item.flat_price}
+                            </Text>
+                            <label
+                              htmlFor="my_modal_6"
+                              onClick={() => dispatch(addToModal(item))}
+                              className={classes.btn}
+                            >
+                              <IconShoppingBag height={16} />
+                              <Text weight={700} size={"sm"}>
+                                add
+                              </Text>
+                            </label>
+                          </div>
+                        </div>
+                      </Card.Section>
+                    </Card>
+                  </>
+                ))}
+              </div>
+            </div>
+          </>
+        ))}
+
+        <Link href={"/offers"} className="flex justify-start items-center  mt-3">
+          <IconArrowNarrowLeft color="#FF006B" size={"1.5rem"} />
+          <Text c={"#FF006B"} fw={700} fz={16}>
+            Back
+          </Text>
+        </Link>
+
+        <div>
+          <FoodOrderModal></FoodOrderModal>
+        </div>
+      </Container>
     </div>
   );
-};
-
-export default OfferItems;
+}

@@ -1,22 +1,20 @@
 "use client";
+import { Container } from "@mantine/core";
 import React from "react";
-import HeaderCarousel from "../../Components/Carousel/HeaderCarousel.jsx";
-import CategoryMenu from "../../Components/CategoryMenu/CategoryMenu.js";
-import PopularItems from "../../Components/PopularItems/PopularItems.js";
-import OfferCard from "../../Components/OfferCard/OfferCard.js";
-
-export const metadata = {
-  title: "FoodKing - Restaurant Food Ordering & Delivery App",
-  description: "Restaurant Food Ordering & Delivery App",
-};
+import Carousel from "../Components/Carousel/HeaderCarousel";
+import HomeMenu from "../Components/HomeMenu/HomeMenu";
+import OfferCard from "../Components/OfferCard/OfferCard";
+import PopularItems from "../Components/PopularItems/PopularItems";
 
 const Home = () => {
   return (
     <div>
-      <HeaderCarousel></HeaderCarousel>
-      <CategoryMenu></CategoryMenu>
-      <OfferCard></OfferCard>
-      <PopularItems></PopularItems>
+      <Container size={"lg"}>
+        <Carousel></Carousel>
+        <HomeMenu></HomeMenu>
+        <OfferCard></OfferCard>
+        <PopularItems></PopularItems>
+      </Container>
     </div>
   );
 };
