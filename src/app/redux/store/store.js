@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { allFoodApi } from "../features/api/apiSlice";
 import modalReducer from "../features/modalSlice/modalSlice";
-// import filterReducer from "../features/filterSlice/filterSlice";
+import productReducer from "../features/productSlice/productSlice";
+import addonReducer from "../features/addonSlice/addonSlice";
 
 const store = configureStore({
   reducer: {
     [allFoodApi.reducerPath]: allFoodApi.reducer,
     modal: modalReducer,
-    // filter: filterReducer,
+    product: productReducer,
+    addon: addonReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(allFoodApi.middleware),
 });

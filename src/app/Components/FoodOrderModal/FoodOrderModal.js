@@ -1,7 +1,17 @@
 import { Avatar, Button, Checkbox, Image, Text, Textarea, createStyles } from "@mantine/core";
 import { IconX } from "@tabler/icons-react";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  // decreaseAddonsQuantity,
+  decreaseQuantity,
+  increaseQuantity,
+} from "../../redux/features/productSlice/productSlice";
+import {
+  decreaseAddonQuantity,
+  increaseAddonQuantity,
+  updatedAddonsQuantity,
+} from "../../redux/features/modalSlice/modalSlice";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -26,12 +36,22 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function FoodOrderModal() {
+export default function FoodOrderModal({ itemId }) {
+  const dispatch = useDispatch();
+  const quantity = useSelector((state) => state.product.quantity);
+  console.log(quantity);
+  // const addonQuantity = useSelector((state) => state.addon.productData.products[0].quantity);
+  // console.log(addonQuantity);
   const { classes } = useStyles();
   const modalData = useSelector((state) => state?.modal?.modalData);
   console.log(modalData);
 
-  // const { name,cover, description, convert_price } = modalData;
+  
+
+
+
+
+  
   return (
     <div>
       <input type="checkbox" id="my_modal_6" class="modal-toggle" />
@@ -49,7 +69,9 @@ export default function FoodOrderModal() {
                       <div className="mt-5 sm:mt-0">
                         <Text className="text-sm font-semibold text-[#FF6B6B]">{modalData?.name}</Text>
                         <Text className="text-xs font-semibold text-dark-50">{modalData?.description}</Text>
-                        <Text className="text-normal font-bold text-[#4DB759]">${modalData.convert_price}</Text>
+                        <Text className="text-normal font-bold text-[#4DB759]">
+                          ${modalData.convert_price * quantity}
+                        </Text>
 
                         {/* <p className="mt-1 text-sm font-semibold text-error">
                       Total : <span className="text-error">{updatedPrice}</span> $
@@ -65,7 +87,7 @@ export default function FoodOrderModal() {
                     <Text className="font-semibold  ">Quantity : </Text>
                     <div className="flex items-center gap-2 bg-gray-200 rounded-2xl px-[3px] py-[1px]">
                       <span
-                        //   onClick={decrementFoodItem}
+                        onClick={() => dispatch(decreaseQuantity())}
                         className="cursor-pointer btn btn-xs btn-circle bg-[#FFA8A8]  duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
                       >
                         {" "}
@@ -76,11 +98,11 @@ export default function FoodOrderModal() {
                         fz={" xs"}
                         //   onClick={decrementFoodItem}
                       >
-                        1
+                        {quantity}
                       </Text>
 
                       <span
-                        //   onClick={incrementFoodItem}
+                        onClick={() => dispatch(increaseQuantity())}
                         className="cursor-pointer btn btn-xs btn-circle bg-[#FFA8A8]  duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
                       >
                         {" "}
@@ -168,7 +190,7 @@ export default function FoodOrderModal() {
                                     </Text>
                                     <div className="flex justify-end items-center gap-2 mt-1  rounded-2xl  py-[1px]">
                                       <span
-                                        //   onClick={decrementFoodItem}
+                                        onClick={() => handleDecrease(addon.id)}
                                         className="cursor-pointer btn btn-xs btn-circle bg-[#FFA8A8]  duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
                                       >
                                         {" "}
@@ -178,10 +200,10 @@ export default function FoodOrderModal() {
                                         fz={" xs"}
                                         //   onClick={decrementFoodItem}
                                       >
-                                        1
+                                        {/* {addonQuantity} */}
                                       </Text>
                                       <span
-                                        //   onClick={incrementFoodItem}
+                                        onClick={() => handleIncrease(addon.id)}
                                         className="cursor-pointer btn btn-xs btn-circle bg-[#FFA8A8]  duration-700 hover:bg-[#FF6B6B] hover:text-[#FFFFFF]"
                                       >
                                         {" "}
